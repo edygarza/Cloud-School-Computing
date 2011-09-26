@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  account_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  telephone: MyString
+
+two:
+  account_id: 1
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  telephone: MyString
