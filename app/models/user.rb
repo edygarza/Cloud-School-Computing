@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :teachers
+
   attr_accessible :username, :email, :password, :password_confirmation
  
   validates_confirmation_of :password

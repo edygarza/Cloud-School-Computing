@@ -2,7 +2,8 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    @user = User.find(params[:user_id])
+    @teachers = @user.teachers.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +25,7 @@ class TeachersController < ApplicationController
   # GET /teachers/new
   # GET /teachers/new.json
   def new
+    @user = User.find(params[:user_id])
     @teacher = Teacher.new
 
     respond_to do |format|
@@ -41,10 +43,11 @@ class TeachersController < ApplicationController
   # POST /teachers.json
   def create
     @teacher = Teacher.new(params[:teacher])
+    @teacher.user = User.find(params[:user_id])
 
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to @teacher, :notice => 'Teacher was successfully created.' }
+        format.html { redirect_to user_teachers_path, :notice => 'Teacher was successfully created.' }
         format.json { render :json => @teacher, :status => :created, :location => @teacher }
       else
         format.html { render :action => "new" }
@@ -60,7 +63,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.update_attributes(params[:teacher])
-        format.html { redirect_to @teacher, :notice => 'Teacher was successfully updated.' }
+        format.html { redirect_to user_teachers_path, :notice => 'Teacher was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +79,7 @@ class TeachersController < ApplicationController
     @teacher.destroy
 
     respond_to do |format|
-      format.html { redirect_to teachers_url }
+      format.html { redirect_to user_teachers_path }
       format.json { head :ok }
     end
   end

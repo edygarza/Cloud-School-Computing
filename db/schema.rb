@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926143100) do
+ActiveRecord::Schema.define(:version => 20110926144009) do
 
   create_table "teachers", :force => true do |t|
-    t.integer  "account_id"
+    t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"

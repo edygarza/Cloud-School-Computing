@@ -2,7 +2,7 @@
 
 <p>
   <b>Account:</b>
-  <%= @teacher.account_id %>
+  <%= @teacher.user %>
 </p>
 
 <p>
@@ -26,5 +26,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<%= link_to 'Edit', edit_user_teacher_path(@teacher) %> |
+<%= link_to 'Back', user_teachers_path %>
