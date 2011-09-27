@@ -14,11 +14,6 @@
       <td><%= school.address %></td>
       <td><%= school.telephone %></td>
       <td>
-	<% if can? :read, school => Teacher %>
-	  <%= link_to "Profesores", school_teachers_path(school) %>
-	<% end %>
-      </td>
-      <td>
 	<% if can? :show, school %>
           <%= link_to "Show", school %>
 	<% end %>

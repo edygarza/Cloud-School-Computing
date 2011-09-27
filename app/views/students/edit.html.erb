@@ -1,0 +1,8 @@
+<% title "Edit Student" %>
+
+<%= render 'form' %>
+
+<p>
+  <%= link_to "Show", school_student_path(@student.school,@student) %> |
+  <%= link_to "View All", school_students_path %>
+</p>

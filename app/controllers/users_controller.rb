@@ -56,4 +56,8 @@ class UsersController < ApplicationController
     redirect_to school_users_path, :notice => "Successfully destroyed user."
   end
 
+  def teachers
+    @school = School.find(params[:school_id])
+    @users = @school.users.where(:teacher => true)
+  end
 end

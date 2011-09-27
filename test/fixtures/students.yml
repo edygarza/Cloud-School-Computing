@@ -1,0 +1,23 @@
+one:
+  school_id: 1
+  registration_number: MyString
+  first_name: MyString
+  last_name: MyString
+  father: MyString
+  mother: MyString
+  home_phone: MyString
+  cell_phone: MyString
+  address: MyText
+  notes: MyText
+
+two:
+  school_id: 1
+  registration_number: MyString
+  first_name: MyString
+  last_name: MyString
+  father: MyString
+  mother: MyString
+  home_phone: MyString
+  cell_phone: MyString
+  address: MyText
+  notes: MyText

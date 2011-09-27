@@ -1,0 +1,48 @@
+<% title "Student" %>
+
+<p>
+  <strong>School:</strong>
+  <%= @student.school_id %>
+</p>
+<p>
+  <strong>Registration Number:</strong>
+  <%= @student.registration_number %>
+</p>
+<p>
+  <strong>First Name:</strong>
+  <%= @student.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @student.last_name %>
+</p>
+<p>
+  <strong>Father:</strong>
+  <%= @student.father %>
+</p>
+<p>
+  <strong>Mother:</strong>
+  <%= @student.mother %>
+</p>
+<p>
+  <strong>Home Phone:</strong>
+  <%= @student.home_phone %>
+</p>
+<p>
+  <strong>Cell Phone:</strong>
+  <%= @student.cell_phone %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= @student.address %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%= @student.notes %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_school_student_path(@student.school,@student) %> |
+  <%= link_to "Destroy", [@student.school,@student], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", school_students_path %>
+</p>

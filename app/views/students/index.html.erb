@@ -1,0 +1,49 @@
+<% title "Students" %>
+
+<table>
+  <tr>
+    <th>School</th>
+    <th>Registration Number</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Father</th>
+    <th>Mother</th>
+    <th>Home Phone</th>
+    <th>Cell Phone</th>
+    <th>Address</th>
+    <th>Notes</th>
+  </tr>
+  <% for student in @students %>
+    <tr>
+      <td><%= student.school_id %></td>
+      <td><%= student.registration_number %></td>
+      <td><%= student.first_name %></td>
+      <td><%= student.last_name %></td>
+      <td><%= student.father %></td>
+      <td><%= student.mother %></td>
+      <td><%= student.home_phone %></td>
+      <td><%= student.cell_phone %></td>
+      <td><%= student.address %></td>
+      <td><%= student.notes %></td>
+      <td>
+	<% if can? :show, student %>
+	  <%= link_to "Show", [student.school,student] %>
+	<% end %>
+      </td>
+      <td>
+	<% if can? :edit, student %>
+	  <%= link_to "Edit", edit_school_student_path(student.school,student) %>
+	<% end %>
+      </td>
+      <td>
+	<% if can? :destroy, student %>
+	  <%= link_to "Destroy", [student.school,student], :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<% if can? :create, @school => Student %>
+  <p><%= link_to "New Student", new_school_student_path %></p>
+<% end %>

@@ -7,19 +7,23 @@ $(document).ready(function() {
   <li><%= link_to "Index", root_url %></li>
   <% if current_user %>
     <% if can? :read, School %>
-      <% School.accessible_by(current_ability).each do |school| %>
-        <li>
-	  <%= link_to school.name, school %>
-	  <% if can? :read, school => Teacher %>
-	    <ul>
-	      <li><%= link_to "Usuarios", school_users_path(school) %></li>
-	      <li><%= link_to "Profesores", school_teachers_path(school) %></li>
-	    </ul>
-	  <% end %>
-	</li>
-      <% end %>
       <li>
-	<%= link_to "Schools", schools_path %>
+	<%= link_to "Escuelas", schools_path %>
+	<ul>
+	  <% School.accessible_by(current_ability).each do |school| %>
+            <li>
+	      <%= link_to school.name, school %>
+	      <ul>
+	        <% if can? :read, school => User %>
+	          <li><%= link_to "Usuarios", school_users_path(school) %></li>
+	        <% end %>
+		<% if can? :read, school => Student %>
+		  <li><%= link_to "Estudiantes", school_students_path(school) %></li>
+		<% end %>
+	      </ul>
+	    </li>
+	  <% end %>
+	</ul>
       </li>
     <% end %>
     <li><%= link_to "Log Out", logout_path %></li>
