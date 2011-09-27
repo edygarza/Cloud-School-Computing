@@ -10,7 +10,25 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_school_user_path(@user.school,@user) %> |
-  <%= link_to "Destroy", [@user.school,@user], :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", school_users_path %>
+<% if !params[:school_id].nil? %>
+  <% if can? :update, @user %>
+    <%= link_to "Edit", edit_school_user_path(@user.school,@user) %> |
+  <% end %>
+  <% if can? :destroy, @user %>
+    <%= link_to "Destroy", [@user.school,@user], :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <% if can? :index, User %>
+    <%= link_to "View All", school_users_path %>
+  <% end %>
+<% else %>
+  <% if can? :update, @user %>
+    <%= link_to "Edit", edit_user_path(@user) %> |
+  <% end %>
+  <% if can? :destroy, @user %>
+    <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <% if can? :read, User %>
+    <%= link_to "View All", users_path %>
+  <% end %>
+<% end %>
 </p>

@@ -9,7 +9,7 @@ CloudSchoolComputing::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
   resources :sessions, :only => [:create, :destroy]
-  resources :users, :only => :create
+  resources :users
 
   root :to => "main#index"
 

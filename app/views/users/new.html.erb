@@ -21,6 +21,13 @@
     <%= f.label :password_confirmation, "Password Confirmation" %>
     <%= f.password_field :password_confirmation %>
   </div>
+  <% if (!@school.nil? && @school.owner == current_user) || (current_user.nil? && current_user.admin?) %>
+    Escoje un tipo de cuenta: <br />
+    <%= f.check_box :teacher %>
+    <%= f.label :teacher, 'Profesor' %><br />
+    <%= f.check_box :assistant %>
+    <%= f.label :assistant, 'Asistente' %><span></span><br />
+  <% end %>
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>

@@ -13,11 +13,13 @@
     <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
-  Escoje un tipo de cuenta: <br />
-  <%= f.check_box :teacher %>
-  <%= f.label :teacher, 'Profesor' %><br />
-  <%= f.check_box :assistant %>
-  <%= f.label :assistant, 'Asistente' %><span></span><br />
+  <% if (!@user.school.nil? && @user.school.owner == current_user) || current_user.admin? %>
+    Escoje un tipo de cuenta: <br />
+    <%= f.check_box :teacher %>
+    <%= f.label :teacher, 'Profesor' %><br />
+    <%= f.check_box :assistant %>
+    <%= f.label :assistant, 'Asistente' %><span></span><br />
+  <% end %>
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>

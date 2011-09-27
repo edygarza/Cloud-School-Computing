@@ -3,11 +3,10 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-
+    
     if user.admin?
       can :manage, :all
     elsif user.director?
-      can [:edit, :update], User, :id => user.id
       can :manage, User, :school => { :owner_id => user.id }
       can :manage, School, :owner_id => user.id
       can :manage, Student, :school => { :owner_id => user.id }
