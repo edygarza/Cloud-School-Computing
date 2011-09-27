@@ -1,0 +1,30 @@
+<script language="JavaScript">
+$(document).ready(function() {
+    $('#jmenu').jmenu();
+});
+</script>
+<ul id="jmenu">
+  <li><%= link_to "Index", root_url %></li>
+  <% if current_user %>
+    <% if can? :read, School %>
+      <% School.accessible_by(current_ability).each do |school| %>
+        <li>
+	  <%= link_to school.name, school %>
+	  <% if can? :read, school => Teacher %>
+	    <ul>
+	      <li><%= link_to "Usuarios", school_users_path(school) %></li>
+	      <li><%= link_to "Profesores", school_teachers_path(school) %></li>
+	    </ul>
+	  <% end %>
+	</li>
+      <% end %>
+      <li>
+	<%= link_to "Schools", schools_path %>
+      </li>
+    <% end %>
+    <li><%= link_to "Log Out", logout_path %></li>
+  <% else %>
+    <li><%= link_to "Sign Up", signup_path %></li>
+    <li><%= link_to "Login", login_path %></li>
+  <% end %>
+</ul>

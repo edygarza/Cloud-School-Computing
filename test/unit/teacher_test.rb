@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TeacherTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def test_should_be_valid
+    assert Teacher.new.valid?
+  end
 end

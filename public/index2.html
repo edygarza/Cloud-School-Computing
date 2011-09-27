@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" value="text-html; charset=utf-8" />
+<title>JMenu</title>
+<link rel="stylesheet" href="css/jmenu.css" />
+<script language="JavaScript" src="js/jquery.js"></script>
+<script language="JavaScript" src="js/jmenu.js"></script>
+<script language="JavaScript">
+$(document).ready(function()
+{
+    $('#jmenu').jmenu();
+});
+</script>
+</head>
+<body>
+<ul id="jmenu">
+    <li><a href="#">Item 1</a></li>
+    <li>
+        <a href="#">Item 2</a>
+        <ul>
+            <li><a href="#">Item 2-1</a></li>
+            <li><a href="#">Item 2-2</a></li>
+            <li>
+                <a href="#">Item 2-3</a>
+                <ul>
+                    <li><a href="#">Item 2-3-1</a></li>
+                    <li>
+                        <a href="#">Item 2-3-2</a>
+                         <ul>
+                            <li><a href="#">Item 2-3-2-1</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Item 2-3-3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Item 2-4</a>
+                 <ul>
+                    <li><a href="#">Item 2-4-1</a></li>
+                    <li><a href="#">Item 2-4-2</a></li>
+                    <li><a href="#">Item 2-4-3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Item 2-5</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Item 3</a></li>
+    <li>
+        <a href="#">Item 4</a>
+        <ul>
+            <li><a href="#">Item 4-1</a></li>
+            <li><a href="#">Item 4-2</a></li>
+            <li><a href="#">Item 4-3</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Item 5</a></li>
+</ul>
+</body>
+</html>

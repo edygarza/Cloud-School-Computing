@@ -1,0 +1,13 @@
+one:
+  owner_id: 1
+  name: MyString
+  description: MyText
+  address: MyText
+  telephone: MyString
+
+two:
+  owner_id: 1
+  name: MyString
+  description: MyText
+  address: MyText
+  telephone: MyString

@@ -1,0 +1,42 @@
+<% title "Schools" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Address</th>
+    <th>Telephone</th>
+  </tr>
+  <% for school in @schools %>
+    <tr>
+      <td><%= school.name %></td>
+      <td><%= school.description %></td>
+      <td><%= school.address %></td>
+      <td><%= school.telephone %></td>
+      <td>
+	<% if can? :read, school => Teacher %>
+	  <%= link_to "Profesores", school_teachers_path(school) %>
+	<% end %>
+      </td>
+      <td>
+	<% if can? :show, school %>
+          <%= link_to "Show", school %>
+	<% end %>
+      </td>
+      <td>
+	<% if can? :update, school %>
+	  <%= link_to "Edit", edit_school_path(school) %>
+	<% end %>
+      </td>
+      <td>
+	<% if can? :destroy, school %>
+	  <%= link_to "Destroy", school_path(school), :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<% if can? :create, School %>
+  <p><%= link_to "New School", new_school_path %></p>
+<% end %>

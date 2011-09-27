@@ -1,6 +1,8 @@
-<h1>Editing teacher</h1>
+<% title "Edit Teacher" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', user_teacher_path(@teacher.user,@teacher) %> |
-<%= link_to 'Back', user_teachers_path(@teacher.user) %>
+<p>
+  <%= link_to "Show", [@teacher.school,@teacher] %> |
+  <%= link_to "View All", school_teachers_path %>
+</p>

@@ -1,49 +1,54 @@
 require 'test_helper'
 
 class TeachersControllerTest < ActionController::TestCase
-  setup do
-    @teacher = teachers(:one)
-  end
-
-  test "should get index" do
+  def test_index
     get :index
-    assert_response :success
-    assert_not_nil assigns(:teachers)
+    assert_template 'index'
   end
 
-  test "should get new" do
+  def test_show
+    get :show, :id => Teacher.first
+    assert_template 'show'
+  end
+
+  def test_new
     get :new
-    assert_response :success
+    assert_template 'new'
   end
 
-  test "should create teacher" do
-    assert_difference('Teacher.count') do
-      post :create, :teacher => @teacher.attributes
-    end
-
-    assert_redirected_to teacher_path(assigns(:teacher))
+  def test_create_invalid
+    Teacher.any_instance.stubs(:valid?).returns(false)
+    post :create
+    assert_template 'new'
   end
 
-  test "should show teacher" do
-    get :show, :id => @teacher.to_param
-    assert_response :success
+  def test_create_valid
+    Teacher.any_instance.stubs(:valid?).returns(true)
+    post :create
+    assert_redirected_to teacher_url(assigns(:teacher))
   end
 
-  test "should get edit" do
-    get :edit, :id => @teacher.to_param
-    assert_response :success
+  def test_edit
+    get :edit, :id => Teacher.first
+    assert_template 'edit'
   end
 
-  test "should update teacher" do
-    put :update, :id => @teacher.to_param, :teacher => @teacher.attributes
-    assert_redirected_to teacher_path(assigns(:teacher))
+  def test_update_invalid
+    Teacher.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => Teacher.first
+    assert_template 'edit'
   end
 
-  test "should destroy teacher" do
-    assert_difference('Teacher.count', -1) do
-      delete :destroy, :id => @teacher.to_param
-    end
+  def test_update_valid
+    Teacher.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => Teacher.first
+    assert_redirected_to teacher_url(assigns(:teacher))
+  end
 
-    assert_redirected_to teachers_path
+  def test_destroy
+    teacher = Teacher.first
+    delete :destroy, :id => teacher
+    assert_redirected_to teachers_url
+    assert !Teacher.exists?(teacher.id)
   end
 end

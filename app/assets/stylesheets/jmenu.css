@@ -1,0 +1,86 @@
+
+/* Don't touch */
+ul#jmenu
+{
+margin: 0px;
+padding: 0px;
+list-style: none;
+}
+ul#jmenu li
+{
+float: left;
+margin: 0px;
+padding: 0px;
+//width: 1px; /* ie */
+//vertical-align: bottom;  /* ie */
+}
+ul#jmenu li a
+{
+display: block;
+white-space: nowrap;
+}
+
+ul#jmenu li ul
+{
+display: none;
+position: absolute;
+margin: 0px;
+padding: 0px;
+list-style: none;
+zoom: 1;  /* ie */
+}
+ul#jmenu li ul li
+{
+float: none;
+}
+
+/* Styling starts here */
+ul#jmenu
+{
+margin: 0 auto;
+width: 80%;
+height: 40px;
+background: #ffffff url('../images/menu-bg.gif') repeat-x left top;
+}
+ul#jmenu li
+{
+background: url('../images/separator.gif') no-repeat right center;
+padding: 0px 10px;
+}
+ul#jmenu li a:link, ul#jmenu li a:visited
+{
+padding: 0px 10px;
+height: 40px;
+line-height: 40px;
+color: #000000;
+font-size: 13px;
+text-decoration: none;
+background: #ffffff;
+}
+ul#jmenu li a:hover
+{
+color: #ffffff;
+background: #aaaaaa url('../images/menu-bg.gif') repeat-x left bottom;
+}
+ul#jmenu ul
+{
+background-color: #000000;
+/* border-left: 1px solid #7a8087; */
+}
+ul#jmenu li ul li
+{
+padding: 0px;
+background: url('../images/sub-separator.gif') repeat-x left bottom;
+}
+ul#jmenu li ul li a:link, ul#jmenu li ul li a:visited
+{
+min-width: 100px;
+//width: 100px;  /* ie */
+font-size: 12px;
+height: 30px;
+line-height: 30px;
+}
+ul#jmenu li ul li a:hover
+{
+background: #aaaaaa url('../images/menu-bg.gif') repeat-x left top;
+}

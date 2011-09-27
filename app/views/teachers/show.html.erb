@@ -1,30 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% title "Teacher" %>
 
 <p>
-  <b>Account:</b>
-  <%= @teacher.user %>
+  <strong>School:</strong>
+  <%= @teacher.school_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @teacher.user_id %>
 </p>
 
 <p>
-  <b>First name:</b>
-  <%= @teacher.first_name %>
+  <%= link_to "Edit", edit_school_teacher_path(@teacher.school,@teacher) %> |
+  <%= link_to "Destroy", [@teacher.school,@teacher], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", school_teachers_path %>
 </p>
-
-<p>
-  <b>Last name:</b>
-  <%= @teacher.last_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @teacher.email %>
-</p>
-
-<p>
-  <b>Telephone:</b>
-  <%= @teacher.telephone %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_teacher_path(@teacher) %> |
-<%= link_to 'Back', user_teachers_path %>

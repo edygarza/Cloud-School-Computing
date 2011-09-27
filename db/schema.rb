@@ -10,21 +10,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926144009) do
+ActiveRecord::Schema.define(:version => 20110927015248) do
 
-  create_table "teachers", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+  create_table "schools", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "address"
     t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "teachers", :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "username",                        :null => false
+    t.string   "username",                                           :null => false
     t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "home_phone"
+    t.string   "office_phone"
+    t.string   "cell_phone"
+    t.text     "address"
+    t.boolean  "admin",                           :default => false
+    t.boolean  "director",                        :default => false
+    t.boolean  "assistant",                       :default => false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -34,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110926144009) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.integer  "school_id"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

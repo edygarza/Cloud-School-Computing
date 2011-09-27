@@ -1,0 +1,28 @@
+<% title "School" %>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @school.owner_id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @school.description %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= @school.address %>
+</p>
+<p>
+  <strong>Telephone:</strong>
+  <%= @school.telephone %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_school_path(@school) %> |
+  <%= link_to "Destroy", @school, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", schools_path %>
+</p>

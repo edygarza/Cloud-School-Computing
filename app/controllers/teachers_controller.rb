@@ -1,86 +1,50 @@
 class TeachersController < ApplicationController
-  # GET /teachers
-  # GET /teachers.json
-  def index
-    @user = User.find(params[:user_id])
-    @teachers = @user.teachers.all
+  load_and_authorize_resource :school
+  load_and_authorize_resource :teacher, :through => :school
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @teachers }
-    end
+  def index
+    @school = School.find(params[:school_id])
+    @teachers = @school.teachers
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
   def show
     @teacher = Teacher.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @teacher }
-    end
   end
 
-  # GET /teachers/new
-  # GET /teachers/new.json
   def new
-    @user = User.find(params[:user_id])
     @teacher = Teacher.new
+    @teacher.school = School.find(params[:school_id])
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @teacher }
+    User.find_by_school(@teacher.school)
+  end
+
+  def create
+    @teacher = Teacher.new(params[:teacher])
+    @teacher.school = School.find(params[:school_id])
+
+    if @teacher.save
+      redirect_to school_teachers_path(@teacher.school), :notice => "Successfully created teacher."
+    else
+      render :action => 'new'
     end
   end
 
-  # GET /teachers/1/edit
   def edit
     @teacher = Teacher.find(params[:id])
   end
 
-  # POST /teachers
-  # POST /teachers.json
-  def create
-    @teacher = Teacher.new(params[:teacher])
-    @teacher.user = User.find(params[:user_id])
-
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to user_teachers_path, :notice => 'Teacher was successfully created.' }
-        format.json { render :json => @teacher, :status => :created, :location => @teacher }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @teacher.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /teachers/1
-  # PUT /teachers/1.json
   def update
     @teacher = Teacher.find(params[:id])
-
-    respond_to do |format|
-      if @teacher.update_attributes(params[:teacher])
-        format.html { redirect_to user_teachers_path, :notice => 'Teacher was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @teacher.errors, :status => :unprocessable_entity }
-      end
+    if @teacher.update_attributes(params[:teacher])
+      redirect_to school_teachers_path(@teacher.school), :notice  => "Successfully updated teacher."
+    else
+      render :action => 'edit'
     end
   end
 
-  # DELETE /teachers/1
-  # DELETE /teachers/1.json
   def destroy
     @teacher = Teacher.find(params[:id])
     @teacher.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_teachers_path }
-      format.json { head :ok }
-    end
+    redirect_to school_teachers_path(@teacher.school), :notice => "Successfully destroyed teacher."
   end
 end

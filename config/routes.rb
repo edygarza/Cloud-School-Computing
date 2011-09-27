@@ -1,11 +1,14 @@
 CloudSchoolComputing::Application.routes.draw do
+  resources :schools do
+    resources :teachers
+    resources :users
+  end
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-  resources :users do
-    resources :teachers
-  end
-  resources :sessions
+  resources :sessions, :only => [:create, :destroy]
+  resources :users, :only => :create
 
   root :to => "main#index"
 

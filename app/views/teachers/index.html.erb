@@ -1,31 +1,21 @@
-<h1>Listing teachers</h1>
+<% title "Teachers" %>
 
 <table>
   <tr>
-    <th>Account</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Telephone</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>School</th>
+    <th>User</th>
   </tr>
-
-<% @teachers.each do |teacher| %>
-  <tr>
-    <td><%= teacher.user_id %></td>
-    <td><%= teacher.first_name %></td>
-    <td><%= teacher.last_name %></td>
-    <td><%= teacher.email %></td>
-    <td><%= teacher.telephone %></td>
-    <td><%= link_to 'Show', user_teacher_path(@user,teacher) %></td>
-    <td><%= link_to 'Edit', edit_user_teacher_path(@user,teacher) %></td>
-    <td><%= link_to 'Destroy', user_teacher_path(@user,teacher), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <% for teacher in @teachers %>
+    <tr>
+      <td><%= teacher.school_id %></td>
+      <td><%= teacher.user_id %></td>
+      <td><%= link_to "Show", [teacher.school,teacher] %></td>
+      <td><%= link_to "Edit", edit_school_teacher_path(teacher.school,teacher) %></td>
+      <td><%= link_to "Destroy", [teacher.school,teacher], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Teacher', new_user_teacher_path(@user) %>
+<% if can? :create, @school => Teacher %>
+<p><%= link_to "New Teacher", new_school_teacher_path %></p>
+<% end %>
