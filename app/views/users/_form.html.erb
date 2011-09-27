@@ -1,0 +1,50 @@
+<%= form_for [@school,@user] do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  Escoje un tipo de cuenta: <br />
+  <%= f.check_box :teacher %>
+  <%= f.label :teacher, 'Profesor' %><br />
+  <%= f.check_box :assistant %>
+  <%= f.label :assistant, 'Asistente' %><span></span><br />
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :home_phone %>
+    <%= f.text_field :home_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :office_phone %>
+    <%= f.text_field :office_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :cell_phone %>
+    <%= f.text_field :cell_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+  <div class="actions"><%= f.submit %></div>
+<% end %>

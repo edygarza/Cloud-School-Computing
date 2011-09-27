@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   belongs_to :school
 
   attr_accessible :username, :email, :password, :password_confirmation, :first_name, :last_name,
-		  :home_phone, :office_phone, :cell_phone, :address
+		  :home_phone, :office_phone, :cell_phone, :address, :admin, :director, :assistant,
+		  :teacher
  
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

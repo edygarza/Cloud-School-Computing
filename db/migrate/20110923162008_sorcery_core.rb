@@ -12,6 +12,7 @@ class SorceryCore < ActiveRecord::Migration
       t.boolean :admin, 	  :default => false
       t.boolean :director,        :default => false
       t.boolean :assistant,	  :default => false
+      t.boolean :teacher,	  :default => false
       t.string :crypted_password, :default => nil
       t.string :salt,             :default => nil
 

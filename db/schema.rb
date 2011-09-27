@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(:version => 20110927015248) do
     t.datetime "updated_at"
   end
 
-  create_table "teachers", :force => true do |t|
-    t.integer  "school_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "username",                                           :null => false
     t.string   "email"
@@ -41,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110927015248) do
     t.boolean  "admin",                           :default => false
     t.boolean  "director",                        :default => false
     t.boolean  "assistant",                       :default => false
+    t.boolean  "teacher",                         :default => false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"

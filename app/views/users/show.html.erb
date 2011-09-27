@@ -1,0 +1,16 @@
+<% title "User" %>
+
+<p>
+  <strong>School:</strong>
+  <%= @user.school_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @user.id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_school_user_path(@user.school,@user) %> |
+  <%= link_to "Destroy", [@user.school,@user], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", school_users_path %>
+</p>
