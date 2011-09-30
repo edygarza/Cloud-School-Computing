@@ -1,4 +1,6 @@
 CloudSchoolComputing::Application.routes.draw do
+  resources :subjects
+
   resources :schools do
     resources :users
     get 'teachers' => "users#teachers"
