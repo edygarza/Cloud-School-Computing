@@ -5,6 +5,8 @@ class CreateSchools < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.text :address
+      t.integer :zip_code
+      t.text :country
       t.string :telephone
       t.timestamps
     end

@@ -1,8 +1,16 @@
-<%= form_for @subject do |f| %>
+<%= form_for [School.find(params[:school_id]),@subject] do |f| %>
   <%= f.error_messages %>
+  <p>
+    <%= f.label :key %><br />
+    <%= f.text_field :key %>
+  </p>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :units %><br />
+    <%= f.text_field :units %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

@@ -7,11 +7,11 @@
   <% for subject in @subjects %>
     <tr>
       <td><%= subject.name %></td>
-      <td><%= link_to "Show", subject %></td>
-      <td><%= link_to "Edit", edit_subject_path(subject) %></td>
-      <td><%= link_to "Destroy", subject, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", school_subject_path(subject) %></td>
+      <td><%= link_to "Edit", edit_school_subject_path(subject.school,subject) %></td>
+      <td><%= link_to "Destroy", school_subject_path(subject.school,subject), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Subject", new_subject_path %></p>
+<p><%= link_to "New Subject", new_school_subject_path(@school) %></p>

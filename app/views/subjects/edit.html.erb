@@ -3,6 +3,6 @@
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @subject %> |
-  <%= link_to "View All", subjects_path %>
+  <%= link_to "Show", school_subject_path(@subject.school, @subject) %> |
+  <%= link_to "View All", school_subjects_path %>
 </p>

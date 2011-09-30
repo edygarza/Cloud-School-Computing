@@ -5,5 +5,6 @@ class School < ActiveRecord::Base
   has_many :students, :dependent => :destroy
   has_many :subjects, :dependent => :destroy	
 
-  attr_accessible :owner_id, :name, :description, :address, :telephone
+  attr_accessible :owner_id, :name, :description, :address, :telephone,
+		  :zip_code, :country
 end

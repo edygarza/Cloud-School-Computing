@@ -20,6 +20,9 @@ $(document).ready(function() {
 		<% if can? :read, school => Student %>
 		  <li><%= link_to "Estudiantes", school_students_path(school) %></li>
 		<% end %>
+		<% if can? :read, school => Subject %>
+		  <li><%= link_to "Materias", school_subjects_path(school) %></li>
+		<% end %>
 	      </ul>
 	    </li>
 	  <% end %>

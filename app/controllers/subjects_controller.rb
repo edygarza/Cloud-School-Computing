@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   def index
-    @subjects = Subject.all
+    @school = School.find(params[:school_id])
+    @subjects = @school.subjects
   end
 
   def show

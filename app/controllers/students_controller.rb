@@ -3,8 +3,8 @@ class StudentsController < ApplicationController
   load_and_authorize_resource :user, :through => :school
 
   def index
-    @students = Student.all
     @school = School.find(params[:school_id])
+    @students = @school.students
   end
 
   def show
