@@ -1,45 +1,56 @@
-<% title "Students" %>
+<%
+  if !show_title? 
+    title "Estudiantes" 
+  end 
+%>
 
-<table>
-  <tr>
-    <th>School</th>
-    <th>Registration Number</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Home Phone</th>
-    <th>Cell Phone</th>
-    <th>Address</th>
-    <th>Notes</th>
-  </tr>
-  <% for student in @students %>
+<table id="box-table-a">
+  <thead>
+    <% if can? :create, @school => Student %>
+      <tr>
+        <td colspan="100">
+  	  <%= link_to image_tag("add.png",:height => 14), new_school_student_path(@school)  %>
+  	  <%= link_to "Nuevo Estudiante", new_school_student_path(@school) %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
-      <td><%= student.school_id %></td>
-      <td><%= student.registration_number %></td>
-      <td><%= student.first_name %></td>
-      <td><%= student.last_name %></td>
-      <td><%= student.home_phone %></td>
-      <td><%= student.cell_phone %></td>
-      <td><%= student.address %></td>
-      <td><%= student.notes %></td>
-      <td>
-	<% if can? :show, student %>
-	  <%= link_to "Show", [student.school,student] %>
-	<% end %>
-      </td>
-      <td>
-	<% if can? :edit, student %>
-	  <%= link_to "Edit", edit_school_student_path(student.school,student) %>
-	<% end %>
-      </td>
-      <td>
-	<% if can? :destroy, student %>
-	  <%= link_to "Destroy", [student.school,student], :confirm => 'Are you sure?', :method => :delete %>
-	<% end %>
-      </td>
+      <th></th>
+      <th>Reg. Number</th>
+      <th>Name</th>
+      <th>Home Phone</th>
+      <th>Cell Phone</th>
+      <th></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% if @students.nil? %>
+      <tr>
+    	<td>
+	  <i>No hay estudiantes en existencia</i>
+	</td>
+      </tr>
+    <% end %>
+    <% for student in @students %>
+      <tr>
+        <td valign="middle">
+	  <%= link_to image_tag("card-info.png"), school_student_path(student.school,student) %>
+        </td>
+	<td>
+	  <%= link_to student.registration_number, school_student_path(student.school,student) %>
+	</td>
+        <td><%= student.first_name %> <%= student.last_name %></td>
+        <td><%= number_to_phone(student.home_phone) %></td>
+        <td><%= number_to_phone(student.cell_phone) %></td>
+        <td>
+	  <% if can? :edit, student %>
+	    <%= link_to image_tag("edit.png",:height => 20), edit_school_student_path(student.school,student) %>
+	  <% end %>
+	  <% if can? :destroy, student %>
+	    <%= link_to image_tag("delete.png",:height => 20), [student.school,student], :confirm => 'Are you sure?', :method => :delete %>
+	  <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<% if can? :create, @school => Student %>
-  <p><%= link_to "New Student", new_school_student_path %></p>
-<% end %>

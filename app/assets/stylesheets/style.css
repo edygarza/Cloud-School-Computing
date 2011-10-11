@@ -1,7 +1,32 @@
 body {
-  background-color: #4B7399;
+  background-color: #7e8f88;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+}
+
+#header {
+  width: 100%;
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: -55px;
+  
+}
+
+#header img {
+  position: relative;
+  z-index: -1;
+}
+
+#footer {
+  text-align: center;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 a img {
@@ -18,13 +43,19 @@ a {
   overflow: hidden;
 }
 
+#hmenu {
+  margin-top: -300px;
+  margin-bottom: 175px;
+}
+
 #container {
   width: 75%;
   margin: 0 auto;
-  background-color: #FFF;
+  background-color: rgba(255,255,255,.7);
   padding: 20px 40px;
-  border: solid 1px black;
   margin-top: 20px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -79,3 +110,32 @@ a {
 .ui-timepicker-div dl dt{ height: 25px; }
 .ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
+
+#box-table-a {
+    border-collapse: collapse;
+    font-family: "Lucida Sans Unicode","Lucida Grande",Sans-Serif;
+    font-size: 12px;
+    margin: 20px auto 10px auto;
+    text-align: left;
+}
+#box-table-a th {
+    background: none repeat scroll 0 0 #9eC9A8;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 4px solid #AABCFE;
+    color: #3366BB;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+    font-weight: bold;
+}
+#box-table-a td {
+    background: none repeat scroll 0 0 #E8EDFF;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid transparent;
+    color: #666699;
+    padding: 8px;
+}
+#box-table-a tr:hover td {
+    background: none repeat scroll 0 0 #D0DAFD;
+    color: #333399;
+}

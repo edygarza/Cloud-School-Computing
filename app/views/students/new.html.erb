@@ -1,5 +1,6 @@
-<% title "New Student" %>
+<% title "Nuevo Estudiante" %>
+<center>
+  <p><%= link_to "Ver Estudiantes de "+@school.name, school_students_path %></p>
+</center>
 
 <%= render 'form' %>
-
-<p><%= link_to "Back to List", school_students_path %></p>

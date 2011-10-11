@@ -1,6 +1,17 @@
-<% title "Users" %>
+<%
+  if !show_title?
+    title "Usuarios"
+  end 
+%>
 
-<table>
+<table id="box-table-a">
+  <% if can? :create, @school => User %>
+    <tr>
+      <td colspan="100">
+	<%= link_to "Crear Usuario", new_school_user_path(@school) %>
+      </td>
+    </tr>
+  <% end %>
   <tr>
     <th>User</th>
     <th>First Name</th>
@@ -17,9 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<% if can? :create, @school => User %>
-  <p><%= link_to "New User", new_school_user_path %></p>
-<% end %>
-
-

@@ -1,8 +1,9 @@
-<% title "Edit Student" %>
+<% title "Editar Estudiante" %>
+<center>
+  <p>
+    <%= link_to "Ver Expediente", school_student_path(@student.school,@student) %> |
+    <%= link_to "Ver Todos los Alumnos", school_students_path %>
+  </p>
+</center>
 
 <%= render 'form' %>
-
-<p>
-  <%= link_to "Show", school_student_path(@student.school,@student) %> |
-  <%= link_to "View All", school_students_path %>
-</p>

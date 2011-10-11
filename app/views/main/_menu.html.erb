@@ -8,7 +8,7 @@ $(document).ready(function() {
   <% if current_user %>
     <% if can? :read, School %>
       <li>
-	<%= link_to "Escuelas", schools_path %>
+	<%= link_to "Niveles", schools_path %>
 	<ul>
 	  <% School.accessible_by(current_ability).each do |school| %>
             <li>

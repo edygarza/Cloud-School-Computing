@@ -1,37 +1,38 @@
-<% title "Schools" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Address</th>
-    <th>Telephone</th>
-  </tr>
-  <% for school in @schools %>
+<% title "Niveles" %>
+
+<table id="box-table-a">
+  <thead>
+    <% if can? :create, School %>
+      <tr>
+	<td colspan="100">
+	  <%= link_to image_tag("add.png",:height => 14), new_school_path  %>
+  	  <%= link_to "Nuevo Nivel", new_school_path %>
+	</td>
+      </tr>
+    <% end %>
     <tr>
-      <td><%= school.name %></td>
-      <td><%= school.description %></td>
-      <td><%= school.address %></td>
-      <td><%= school.telephone %></td>
-      <td>
-	<% if can? :show, school %>
-          <%= link_to "Show", school %>
-	<% end %>
-      </td>
-      <td>
-	<% if can? :update, school %>
-	  <%= link_to "Edit", edit_school_path(school) %>
-	<% end %>
-      </td>
-      <td>
-	<% if can? :destroy, school %>
-	  <%= link_to "Destroy", school_path(school), :confirm => 'Are you sure?', :method => :delete %>
-	<% end %>
-      </td>
+      <th width=200>Name</th>
+      <th>Country</th>
+      <th>Telephone</th>
+      <th></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% for school in @schools %>
+      <tr>
+        <td><%= link_to school.name, school %></td>
+        <td><%= school.country %></td>
+        <td><%= number_to_phone(school.telephone) %></td>
+        <td>
+	  <% if can? :update, school %>
+	    <%= link_to image_tag("edit.png",:height => 20), edit_school_path(school) %>
+	  <% end %>
+	  <% if can? :destroy, school %>
+	    <%= link_to image_tag("delete.png", :height => 20), school_path(school), :confirm => 'Are you sure?', :method => :delete %>
+	  <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<% if can? :create, School %>
-  <p><%= link_to "New School", new_school_path %></p>
-<% end %>

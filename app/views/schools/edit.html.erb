@@ -1,8 +1,10 @@
-<% title "Edit School" %>
+<% title "Editar Nivel" %>
+
+<center>
+  <p>
+    <%= link_to "Ver Informacion", @school %> |
+    <%= link_to "Ver Listado", schools_path %>
+  </p>
+</center>
 
 <%= render 'form' %>
-
-<p>
-  <%= link_to "Show", @school %> |
-  <%= link_to "View All", schools_path %>
-</p>

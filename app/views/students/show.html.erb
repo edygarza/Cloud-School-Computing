@@ -1,48 +1,40 @@
-<% title "Student" %>
-
+<% title "Expediente de Estudiante" %>
+<center>
+  <h2>Alumno: <%= @student.first_name %> <%= @student.last_name %></h2>
+  <p>
+    <% if can? :update, @student %>
+      <%= link_to "Editar", edit_school_student_path(@student.school,@student) %> |
+    <% end %>
+    <% if can? :destroy, @student %>
+      <%= link_to "Eliminar", [@student.school,@student], :confirm => 'Are you sure?', :method => :delete %> |
+    <% end %>
+    <% if can? :index, Student, :school_id => @student.school_id %>
+      <%= link_to "Ver Todos", school_students_path %>
+    <% end %>
+  </p>
+</center>
+<%= image_tag @student.avatar.url, :style => "float:left;padding:5px 10px;", :height => 140 %>
 <p>
-  <strong>School:</strong>
-  <%= @student.school_id %>
+  <strong>Nivel:</strong>
+  <%= @student.school.name %>
 </p>
 <p>
-  <strong>Registration Number:</strong>
+  <strong>Matr&iacute;cula:</strong>
   <%= @student.registration_number %>
 </p>
 <p>
-  <strong>First Name:</strong>
-  <%= @student.first_name %>
+  <strong>Tel&eacute;fono de Casa:</strong>
+  <%= number_to_phone(@student.home_phone) %>
 </p>
 <p>
-  <strong>Last Name:</strong>
-  <%= @student.last_name %>
+  <strong>Tel&eacute;fono Celular:</strong>
+  <%= number_to_phone(@student.cell_phone) %>
 </p>
 <p>
-  <strong>Father:</strong>
-  <%= @student.father %>
-</p>
-<p>
-  <strong>Mother:</strong>
-  <%= @student.mother %>
-</p>
-<p>
-  <strong>Home Phone:</strong>
-  <%= @student.home_phone %>
-</p>
-<p>
-  <strong>Cell Phone:</strong>
-  <%= @student.cell_phone %>
-</p>
-<p>
-  <strong>Address:</strong>
+  <strong>Direcci&oacute;n:</strong>
   <%= @student.address %>
 </p>
 <p>
-  <strong>Notes:</strong>
+  <strong>Notas:</strong>
   <%= @student.notes %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_school_student_path(@student.school,@student) %> |
-  <%= link_to "Destroy", [@student.school,@student], :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", school_students_path %>
 </p>

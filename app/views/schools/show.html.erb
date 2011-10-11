@@ -1,28 +1,41 @@
-<% title "School" %>
+<% title @school.name %>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @school.owner_id %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @school.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @school.description %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%= @school.address %>
-</p>
-<p>
-  <strong>Telephone:</strong>
-  <%= @school.telephone %>
-</p>
+<center>
+  <p>
+    <%= link_to "Editar", edit_school_path(@school) %> |
+    <%= link_to "Eliminar", @school, :confirm => 'Estas seguro?', :method => :delete %> |
+    <%= link_to "Ver Todos", schools_path %>
+  </p>
+</center>
 
-<p>
-  <%= link_to "Edit", edit_school_path(@school) %> |
-  <%= link_to "Destroy", @school, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", schools_path %>
-</p>
+<br/><br/>
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+</script>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tab-info">Informacion</a></li>
+    <li><a href="#tab-users">Usuarios</a></li>
+    <li><a href="#tab-students">Estudiantes</a></li>
+  </ul>
+  <div id="tab-info">
+    Tel&eacute;fono: <%= number_to_phone(@school.telephone) %><br/>
+    Direcci&oacute;n: <%= @school.address %><br/>
+    Pa&iacute;s: <%= @school.country %><br/>
+    C&oacute;digo Postal: <%= @school.zip_code %><br/>
+
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    <script>showMapAddress("<%= @school.address %>, <%= @school.zip_code %>, <%= @school.country %>");</script>
+  </div>
+  <div id="tab-users">
+    <% @users = @school.users %>
+    <%= render :template => "users/index" %>
+  </div>
+  <div id="tab-students">
+    <% @students = @school.students %>
+    <%= render :template => "students/index" %>
+  </div>
+</div>

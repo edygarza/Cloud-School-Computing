@@ -1,28 +1,26 @@
 <%= form_for @school do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
-  </p>
-  <p>
-    <%= f.label :zip_code %><br />
-    <%= f.text_area :zip_code %>
-  </p>
-  <p>
-    <%= f.label :country %><br />
-    <%= f.text_area :country %>
-  </p>
-  <p>
-    <%= f.label :telephone %><br />
-    <%= f.text_field :telephone %>
-  </p>
-  <p><%= f.submit %></p>
+  <table align="center">
+  <tr>
+    <td valign="top">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %><br/><br/>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :rows => 8 %><br/><br/>
+      <%= f.label :telephone %><br />
+      <%= f.text_field :telephone %>
+    </td>
+    <td>
+      <%= f.label :address %><br />
+      <%= f.text_area :address, :rows => 8 %><br/><br/>
+      <%= f.label :zip_code %><br />
+      <%= f.text_field :zip_code %><br/><br/>
+      <%= f.label :country %><br />
+      <%= f.text_field :country %><br/><br/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><%= f.submit %></td>
+  </tr>
+  </table>
 <% end %>

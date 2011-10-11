@@ -11,6 +11,7 @@ gem 'json'
 gem 'therubyracer'
 gem 'nifty-generators', :group => :development
 gem 'cancan'
+gem 'carrierwave'
 
 # Gems used only for assets and not required
 # in production environments by default.

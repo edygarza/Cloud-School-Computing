@@ -38,9 +38,11 @@ float: none;
 ul#jmenu
 {
 margin: 0 auto;
-width: 80%;
+width: 70%;
 height: 40px;
-background: #ffffff url('../images/menu-bg.gif') repeat-x left top;
+background: rgba(255,255,255,.7) url('../images/menu-bg.gif') repeat-x left top;
+border-radius: 10px;
+-moz-border-radius: 10px;
 }
 ul#jmenu li
 {
@@ -55,17 +57,19 @@ line-height: 40px;
 color: #000000;
 font-size: 13px;
 text-decoration: none;
-background: #ffffff;
+background: transparent;
 }
 ul#jmenu li a:hover
 {
 color: #ffffff;
-background: #aaaaaa url('../images/menu-bg.gif') repeat-x left bottom;
+background: #7e8f88 url('../images/menu-bg.gif') repeat-x left bottom;
 }
 ul#jmenu ul
 {
-background-color: #000000;
-/* border-left: 1px solid #7a8087; */
+background-color: #AeBfB8;
+border-left: 2px solid #AeBfB8;
+border-bottom: 2px solid #AeBfB8;
+border-right: 2px solid #AeBfB8;
 }
 ul#jmenu li ul li
 {
@@ -82,5 +86,5 @@ line-height: 30px;
 }
 ul#jmenu li ul li a:hover
 {
-background: #aaaaaa url('../images/menu-bg.gif') repeat-x left top;
+background: #7e8f88 url('../images/menu-bg.gif') repeat-x left top;
 }

@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title>Cloud School Computing</title>
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application", "http://maps.googleapis.com/maps/api/js?sensor=false" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
-    <%= render "main/menu" %>
+    <div id="header" class="no-select">
+      <%= image_tag "banner.png" %>
+    </div>
+    <div id="hmenu">
+      <%= render "main/menu" %>
+    </div>
     <div id="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
+      <center><%= content_tag :h1, yield(:title) if show_title? %></center>
       <%= yield %>
+    </div>
+    <div id="footer" class="no-select">
+      <%= image_tag "footer.png" %>
     </div>
   </body>
 </html>

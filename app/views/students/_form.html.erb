@@ -1,5 +1,6 @@
-<%= form_for [@school,@student] do |f| %>
+<%= form_for [@school,@student], :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
+  <strong>Nivel:</strong> <%= @school.name %><br/>
   <p>
     <%= f.label :registration_number %><br />
     <%= f.text_field :registration_number %>
@@ -11,6 +12,11 @@
   <p>
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :avatar, "Fotografia" %><br />
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
   </p>
   <p>
     <%= f.label :semester %><br />
