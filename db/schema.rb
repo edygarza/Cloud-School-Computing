@@ -10,15 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011175544) do
+ActiveRecord::Schema.define(:version => 20111016031321) do
+
+  create_table "groups", :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.string   "classroom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "schools", :force => true do |t|
     t.integer  "owner_id"
     t.string   "name"
     t.text     "description"
     t.text     "address"
-    t.integer  "zip_code"
-    t.text     "country"
     t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,11 +36,8 @@ ActiveRecord::Schema.define(:version => 20111011175544) do
     t.string   "registration_number"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "semester"
-    t.date     "entry_date"
-    t.string   "tutor"
-    t.string   "tutor_address"
-    t.string   "tutor_phone"
+    t.string   "father"
+    t.string   "mother"
     t.string   "home_phone"
     t.string   "cell_phone"
     t.text     "address"
@@ -44,10 +48,7 @@ ActiveRecord::Schema.define(:version => 20111011175544) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.integer  "school_id"
-    t.string   "key"
     t.string   "name"
-    t.integer  "units"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,31 @@
+<% title "Groups" %>
+
+<table>
+  <tr>
+    <th>Teacher</th>
+    <th>Subject</th>
+    <th>Classroom</th>
+  </tr>
+  <% for group in @groups %>
+    <tr>
+      <td><%= User.find(group.user_id).first_name+" "+User.find(group.user_id).last_name %></td>
+      <td><%= Subject.find(group.subject_id).name %></td>
+      <td><%= group.classroom %></td>
+      <td>
+	<% if can? :show, group %>
+	  <%= link_to "Show", school_group_path(group.school,group) %>
+	<% end %>
+      </td>
+      <% if can? :edit, group %>
+        <td><%= link_to "Edit", edit_school_group_path(group.school,group) %></td>
+      <% end %>
+      <% if can? :destroy, group %>
+        <td><%= link_to "Destroy", school_group_path(group.school,group), :confirm => 'Are you sure?', :method => :delete %></td>
+      
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<% if can? :create, Group %>
+  <p><%= link_to "New Group", new_school_group_path(group.school,group) %></p>
+<% end %>
