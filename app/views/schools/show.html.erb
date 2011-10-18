@@ -31,7 +31,7 @@
     <script>showMapAddress("<%= @school.address %>, <%= @school.zip_code %>, <%= @school.country %>");</script>
   </div>
   <div id="tab-users">
-    <% @users = @school.users %>
+    <% @users = @school.users.page().per(10) %>
     <%= render :template => "users/index" %>
   </div>
   <div id="tab-students">

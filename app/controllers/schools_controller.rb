@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @schools = School.accessible_by(current_ability)
+    @schools = School.where(:owner_id => current_user)
   end
 
   def show

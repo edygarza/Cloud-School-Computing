@@ -117,6 +117,7 @@ a {
     font-size: 12px;
     margin: 20px auto 10px auto;
     text-align: left;
+    min-width: 60%;
 }
 #box-table-a th {
     background: none repeat scroll 0 0 #9eC9A8;

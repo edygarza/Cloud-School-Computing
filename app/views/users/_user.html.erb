@@ -1,0 +1,21 @@
+<%
+  abilities = Array.new
+  abilities.push("Prof") if user.teacher
+  abilities.push("Asist") if user.assistant
+%>
+<tr>
+  <td><%= link_to user.username, school_user_path(user.school,user) %></td>
+  <td><%= user.first_name %></td>
+  <td><%= user.last_name %></td>
+  <td><%= user.email %></td>
+  <td><%= abilities.inspect.tr("\"","") %></td>
+  <td coslpan="3">
+    <% if can? :update, user %>
+      <%= link_to image_tag("edit.png", :height => 20), edit_school_user_path(user.school,user) %>
+    <%end%>
+    <% if can? :destroy, user %>
+      <%= link_to image_tag("delete.png", :height => 20), school_user_path(user.school,user), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  </td>
+</tr>
+

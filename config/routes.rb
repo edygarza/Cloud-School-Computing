@@ -5,6 +5,8 @@ CloudSchoolComputing::Application.routes.draw do
     get 'teachers' => "users#teachers"
     resources :students
     resources :subjects
+
+    match '/users/page/:page_id' => 'users#more'
   end
   
   resources :groups

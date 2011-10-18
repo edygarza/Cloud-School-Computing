@@ -59,6 +59,8 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.1)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     libv8 (3.3.10.2)
     mail (2.3.0)
       i18n (>= 0.4.0)
@@ -143,6 +145,7 @@ DEPENDENCIES
   faker
   jquery-rails
   json
+  kaminari
   mocha
   nifty-generators
   populator

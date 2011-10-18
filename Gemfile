@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 gem 'populator'
 gem 'faker'
+gem 'kaminari'
 gem 'sqlite3'
 gem 'sorcery'
 gem 'json'

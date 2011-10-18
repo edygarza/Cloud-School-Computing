@@ -10,7 +10,7 @@ $(document).ready(function() {
       <li>
 	<%= link_to "Niveles", schools_path %>
 	<ul>
-	  <% School.accessible_by(current_ability).each do |school| %>
+	  <% School.where(:owner_id => current_user).each do |school| %>
             <li>
 	      <%= link_to school.name, school %>
 	      <ul>
