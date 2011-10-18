@@ -1,4 +1,28 @@
-<% title "User" %>
+<% title "Ver Usuario" %>
+
+<center>
+<% if !params[:school_id].nil? %>
+  <% if can? :update, @user %>
+    <%= link_to "Editar", edit_school_user_path(@user.school,@user) %> |
+  <% end %>
+  <% if can? :destroy, @user %>
+    <%= link_to "Eliminar", [@user.school,@user], :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <% if can? :index, User %>
+    <%= link_to "Ver Todos", school_users_path %>
+  <% end %>
+<% else %>
+  <% if can? :update, @user %>
+    <%= link_to "Editar", edit_user_path(@user) %> |
+  <% end %>
+  <% if can? :destroy, @user %>
+    <%= link_to "Eliminar", @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <% if can? :read, User %>
+    <%= link_to "Ver Todos", users_path %>
+  <% end %>
+<% end %>
+</center>
 
 <p>
   <strong>School:</strong>
@@ -9,26 +33,3 @@
   <%= @user.id %>
 </p>
 
-<p>
-<% if !params[:school_id].nil? %>
-  <% if can? :update, @user %>
-    <%= link_to "Edit", edit_school_user_path(@user.school,@user) %> |
-  <% end %>
-  <% if can? :destroy, @user %>
-    <%= link_to "Destroy", [@user.school,@user], :confirm => 'Are you sure?', :method => :delete %> |
-  <% end %>
-  <% if can? :index, User %>
-    <%= link_to "View All", school_users_path %>
-  <% end %>
-<% else %>
-  <% if can? :update, @user %>
-    <%= link_to "Edit", edit_user_path(@user) %> |
-  <% end %>
-  <% if can? :destroy, @user %>
-    <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete %> |
-  <% end %>
-  <% if can? :read, User %>
-    <%= link_to "View All", users_path %>
-  <% end %>
-<% end %>
-</p>

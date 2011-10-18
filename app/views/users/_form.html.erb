@@ -10,8 +10,8 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.label :username, "Usuario" %>: 
+    <%= @user.username %>
   </div>
   <% if (!@user.school.nil? && @user.school.owner == current_user) || current_user.admin? %>
     Escoje un tipo de cuenta: <br />
@@ -25,27 +25,27 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :first_name %>
+    <%= f.label :first_name, "Nombre(s)" %>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label :last_name, "Apellido(s)" %>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :home_phone %>
+    <%= f.label :home_phone, "Telephono de Casa" %>
     <%= f.text_field :home_phone %>
   </div>
   <div class="field">
-    <%= f.label :office_phone %>
+    <%= f.label :office_phone, "Telefono de Oficina" %>
     <%= f.text_field :office_phone %>
   </div>
   <div class="field">
-    <%= f.label :cell_phone %>
+    <%= f.label :cell_phone, "Telefono Celular" %>
     <%= f.text_field :cell_phone %>
   </div>
   <div class="field">
-    <%= f.label :address %>
+    <%= f.label :address, "Direccion" %>
     <%= f.text_area :address %>
   </div>
   <div class="actions"><%= f.submit %></div>

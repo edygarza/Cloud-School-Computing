@@ -1,12 +1,12 @@
-<% title "Edit User" %>
+<% title "Editar Usuario" %>
+
+<center>
+<% if !params[:school_id].nil? %>
+  <%= link_to "Ver Usuario", [@user.school,@user] %> |
+  <%= link_to "Ver Todos", school_users_path %>
+<% else %>
+  <%= link_to "Ver Usuario", @user %>
+<% end %>
+</center>
 
 <%= render 'form' %>
-
-<p>
-<% if !params[:school_id].nil? %>
-  <%= link_to "Show", [@user.school,@user] %> |
-  <%= link_to "View All", school_users_path %>
-<% else %>
-  <%= link_to "Show", @user %>
-<% end %>
-</p>
