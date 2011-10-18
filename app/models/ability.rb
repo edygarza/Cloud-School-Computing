@@ -7,18 +7,23 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.director?
+      can :create, User
       can :manage, User do |u|
 	u == user || u.school.owner == user
       end
+      can :create, School
       can :manage, School do |s|
 	s.owner == user
       end
+      can :create, Student
       can :manage, Student do |s|
     	s.school.owner == user
       end
+      can :create, Subject
       can :manage, Subject do |s| 
 	s.school.owner == user
       end
+      can :create, Group
       can :manage, Group do |g|
 	g.school.owner == user
       end

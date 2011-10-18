@@ -60,7 +60,13 @@ namespace :db do
 	student.address = Faker::Address.street_address
 	student.notes = Populator.paragraphs(1..3)
       end
-    end
 
+      Subject.populate 10..15 do |subject|
+	subject.school_id = school.id
+	subject.key = 1000...1100
+	subject.name = Populator.words(1..3)
+	subject.units = 6..12
+      end
+    end
   end
 end

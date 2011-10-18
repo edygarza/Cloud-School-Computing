@@ -1,10 +1,95 @@
-<% title "Subjects" %>
+<%
+  key_data = Array.new
+  name_data = Array.new
+  @school.subjects.each do |subject|
+    key_data.push(subject.key) if !key_data.include?(subject.key)
+    name_data.push(subject.name) if !name_data.include?(subject.name)
+  end
+%>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <%= render @subjects %>
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'><b>" + item.category + "</b></li>" );
+          currentCategory = item.category;
+        }
+        self._renderItem( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+    var data = [
+      	<% key_data.each {|k| %> { label: "<%= k %>", category: "Clave" }, <% } %>
+	<% name_data.each {|s| %> { label: "<%= s %>", category: "Materia" }, <% } %>
+      ];
+    $("#search_field").catcomplete({
+      delay: 0,
+      source: data
+    });
+  });
+
+  function loadMore(pageNo) {
+    var url = '/schools/<%= @school.id %>/subjects/page/';
+    <% searchf = "?utf8=✓&q="+params[:q] if !params[:q].nil?%>
+    $.get(url + pageNo + '<%= searchf %>', function(response) {
+      $("#subjects_data").append(response);
+    });
+  }
+
+  $(document).ready(function() {
+    var currPage = 1;
+    $("button.next").click(function() {
+      loadMore(++currPage);
+    });
+  });  
+</script>
+
+<% title "Materias" if !show_title? %>
+
+<center>
+  <%= form_tag(school_subjects_path(@school), :method => :get, :autocomplete => "off") do  %>
+    <%= text_field_tag :q, params[:q], :id => "search_field" %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</center>
+
+
+<table id="box-table-a">
+  <thead>
+    <tr>
+      <td colspan="10">
+	<%= link_to image_tag("add.png", :height => 14), new_school_subject_path(@school) %>
+        <%= link_to "Nueva Materia", new_school_subject_path(@school) %>
+      </td>
+    </tr>
+    <tr>
+      <th>Clave</th>
+      <th>Nombre</th>
+      <th>Unidades</th>
+      <th width="60"></th>
+    </tr>
+  </thead>
+  <tbody id="subjects_data">
+    <% if @subjects.count > 0 %>
+      <%= render @subjects %>
+    <% else %>
+      <tr>
+	<td colspan="10" align="center"><i>No hay materias registradas</i></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<p><%= link_to "New Subject", new_school_subject_path(@school) %></p>
+<div id="next_link">
+  <% if !@subjects.last_page? %>
+    <br/>
+    <center>
+      <%= button_tag "Load more", :class => "next", :style => "width:300px;" %>
+    </center>
+  <% end %>
+</div>

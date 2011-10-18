@@ -1,12 +1,23 @@
-<% title "Subject" %>
+<% title "Ver Materia" %>
+<center>
+  <% if can? :edit, @subject %>
+    <%= link_to "Edit", edit_school_subject_path(@subject.school,@subject) %> |
+  <% end %>
+  <% if can? :destroy, @subject %>
+    <%= link_to "Destroy", [@subject.school,@subject], :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <%= link_to "View All", school_subjects_path(@subject.school) %>
+</center>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Clave:</strong>
+  <%= @subject.key %>
+</p>
+<p>
+  <strong>Materia:</strong>
   <%= @subject.name %>
 </p>
-
 <p>
-  <%= link_to "Edit", edit_school_subject_path(@subject.school,@subject) %> |
-  <%= link_to "Destroy", [@subject.school,@subject], :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", school_subjects_path(@subject.school) %>
+  <strong>Unidades:</strong>
+  <%= @subject.units %>
 </p>

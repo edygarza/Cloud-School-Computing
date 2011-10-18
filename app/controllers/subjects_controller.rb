@@ -1,7 +1,18 @@
 class SubjectsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-    @subjects = @school.subjects
+    query = "key LIKE ? OR name LIKE ?"
+    @subjects = @school.subjects.where(query, "%#{params[:q]}%", "%#{params[:q]}%")
+    @subjects = @subjects.page().per(10)
+  end
+
+  def more
+    @school = School.find(params[:school_id])
+    query = "key LIKE ? OR name LIKE ?"
+    @subjects = @school.subjects.where(query, "%#{params[:q]}%", "%#{params[:q]}%")
+    @subjects = @subjects.page(params[:page_id]).per(10)
+
+    render :layout => false
   end
 
   def show

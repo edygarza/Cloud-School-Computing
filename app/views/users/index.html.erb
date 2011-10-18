@@ -69,22 +69,24 @@ end
 </center>
 
 <table id="box-table-a">
-  <% if can? :create, @school => User %>
+  <thead>
+    <% if can? :create, @school => User %>
+      <tr>
+        <td colspan="100">
+          <%= link_to image_tag("add.png", :height => 14), new_school_user_path(@school) %>
+  	  <%= link_to "Crear Usuario", new_school_user_path(@school) %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
-      <td colspan="100">
-        <%= link_to image_tag("add.png", :height => 14), new_school_user_path(@school) %>
-	<%= link_to "Crear Usuario", new_school_user_path(@school) %>
-      </td>
+      <th>User</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Abilities</th>
+      <th></th>
     </tr>
-  <% end %>
-  <tr>
-    <th>User</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Abilities</th>
-    <th></th>
-  </tr>
+  </thead>
   <tbody id="users_data">
     <% if @users.empty? %>
       <tr>

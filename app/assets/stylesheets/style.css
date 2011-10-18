@@ -119,6 +119,7 @@ a {
     text-align: left;
     min-width: 60%;
 }
+
 #box-table-a th {
     background: none repeat scroll 0 0 #9eC9A8;
     border-bottom: 1px solid #FFFFFF;
@@ -128,6 +129,7 @@ a {
     font-weight: normal;
     padding: 8px;
     font-weight: bold;
+    text-align: center;
 }
 #box-table-a td {
     background: none repeat scroll 0 0 #E8EDFF;
@@ -136,7 +138,7 @@ a {
     color: #666699;
     padding: 8px;
 }
-#box-table-a tr:hover td {
+#box-table-a tbody tr:hover td {
     background: none repeat scroll 0 0 #D0DAFD;
     color: #333399;
 }
