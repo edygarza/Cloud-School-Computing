@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @school = School.find(params[:school_id])
-    @users = @school.users
+    @users = @school.users.where('username LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
   end
 
   def show

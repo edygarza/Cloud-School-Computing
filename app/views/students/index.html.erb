@@ -24,11 +24,9 @@
     </tr>
   </thead>
   <tbody>
-    <% if @students.nil? %>
+    <% if @students.empty? %>
       <tr>
-    	<td>
-	  <i>No hay estudiantes en existencia</i>
-	</td>
+        <td colspan="6" align="center"><i>No existen estudiantes</i></td>
       </tr>
     <% end %>
     <% for student in @students %>
