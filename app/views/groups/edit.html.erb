@@ -1,0 +1,31 @@
+<%= form_for [@school,@group] do |f| %>
+  <% if @group.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @group.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% @user = User.find(session[:user_id]) %>
+  <% if (@user.admin == true || @user.director == true || @user.assistant == true) %>
+    <div class="field">
+      <%= f.label :teachers %>
+      <%= collection_select(:group, :user_id, User.where(:teacher => true), :id, :last_name) %>
+    </div>
+    <div class="field">
+      <%= f.label :subjects %>
+      <%= collection_select(:group, :subject_id, Subject.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= f.label :classroom %>
+      <%= f.text_field :classroom %>
+    </div> 
+   <div class="actions"><%= f.submit %></div>
+   <%= link_to "View All", school_groups_path(@group.school, @group) %>
+  <% else %>
+    <%= "Favor de iniciar sesion para continuar" %>
+  <% end %>
+<% end %>
