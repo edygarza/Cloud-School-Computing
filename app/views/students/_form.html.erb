@@ -24,7 +24,7 @@
   </p>
   <p>
     <%= f.label :entry_date %><br />
-    <%= f.text_field :entry_date %>
+    <%= f.date_select :entry_date %>
   </p>
   <p>
     <%= f.label :home_phone %><br />
@@ -35,16 +35,56 @@
     <%= f.text_field :cell_phone %>
   </p>
   <p>
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.label :street_name %><br />
+    <%= f.text_field :street_name %>
+  </p>
+  <p>
+    <%= f.label :street_number %><br />
+    <%= f.text_field :street_number %>
+  </p>
+  <p>
+    <%= f.label :district %><br />
+    <%= f.text_field :district %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
   </p>
   <p>
     <%= f.label :tutor %><br />
     <%= f.text_field :tutor %>
   </p>
   <p>
-    <%= f.label :tutor_address %><br />
-    <%= f.text_area :tutor_address %>
+    <%= f.label :tutor_street_name %><br />
+    <%= f.text_field :tutor_street_name %>
+  </p>
+  <p>
+    <%= f.label :tutor_street_number %><br />
+    <%= f.text_field :tutor_street_number %>
+  </p>
+  <p>
+    <%= f.label :tutor_district %><br />
+    <%= f.text_field :tutor_district %>
+  </p>
+  <p>
+    <%= f.label :tutor_city %><br />
+    <%= f.text_field :tutor_city %>
+  </p>
+  <p>
+    <%= f.label :tutor_state %><br />
+    <%= f.text_field :tutor_state %>
+  </p>
+  <p>
+    <%= f.label :tutor_country %><br />
+    <%= f.text_field :tutor_country %>
   </p>
   <p>
     <%= f.label :tutor_phone %><br />

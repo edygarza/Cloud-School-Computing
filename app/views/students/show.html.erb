@@ -13,7 +13,7 @@
     <% end %>
   </p>
 </center>
-<%= image_tag @student.avatar.url, :style => "float:left;padding:5px 10px;", :height => 140 %>
+<%= image_tag @student.avatar.url, :style => "float:left;padding:5px 10px;", :height => 200 %>
 <p>
   <strong>Nivel:</strong>
   <%= @student.school.name %>
@@ -32,7 +32,19 @@
 </p>
 <p>
   <strong>Direcci&oacute;n:</strong>
-  <%= @student.address %>
+  <%= @student.street_name %> <%= @student.street_number %>, <%= @student.district %>
+</p>
+<p>
+  <strong>Ciudad y Estado:</strong>
+  <%= @student.city %>, <%= @student.state %>
+</p>
+<p>
+  <strong>Pa&iacute;s:</strong>
+  <%= @student.country %>
+</p>
+<p>
+  <strong>Direcci&oacute;n:</strong>
+  <%= @student.street_name %> <%= @student.street_number %>, <%= @student.district %>
 </p>
 <p>
   <strong>Notas:</strong>

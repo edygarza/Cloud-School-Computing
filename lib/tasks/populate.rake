@@ -54,14 +54,24 @@ namespace :db do
 	student.registration_number = 600000..1000000
 	student.first_name = Faker::Name.first_name
 	student.last_name = Faker::Name.last_name
+        student.street_name = Faker::Address.street_name
+	student.street_number = 1000..9999
+	student.district = ""
+	student.city = Faker::Address.city
+	student.state = Faker::Address.us_state
+	student.country = "United States"
 	student.semester = 1..9
-	student.entry_date = 2.years.ago..Time.now
+	student.entry_date = 5.years.ago..1.year.ago
 	student.tutor = Faker::Name.name
-	student.tutor_address = Faker::Address.street_address
+	student.tutor_street_name = Faker::Address.street_name
+        student.tutor_street_number = 1000..9999
+        student.tutor_district = ""
+        student.tutor_city = Faker::Address.city
+        student.tutor_state = Faker::Address.us_state
+        student.tutor_country = "United States"
 	student.tutor_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
 	student.home_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
 	student.cell_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
-	student.address = Faker::Address.street_address
 	student.notes = Populator.paragraphs(1..3)
       end
 
