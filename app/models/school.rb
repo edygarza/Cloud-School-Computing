@@ -8,4 +8,7 @@ class School < ActiveRecord::Base
 
   attr_accessible :owner_id, :name, :description, :address, :telephone,
 		  :zip_code, :country
+  validates :name, :description, :address, :country, :presence => true
+  validates :telephone, :numericality => true, :length => { :in => 7..10 }, :presence => true
+  validates :zip_code, :numericality => true, :presence => true
 end
