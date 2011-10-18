@@ -4,7 +4,7 @@ class Subject < ActiveRecord::Base
 
   attr_accessible :name, :key, :units
 
-  validates :name, :uniqueness => true, :presence => true
-  validates :key, :units, :presence => true
+  validates_uniqueness_of :key, :scope => :school_id
+  validates :key, :units, :name, :presence => true
   validates :units, :numericality => true
 end
