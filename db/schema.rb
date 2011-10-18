@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20111016031321) do
     t.string   "name"
     t.text     "description"
     t.text     "address"
+    t.integer  "zip_code"
+    t.text     "country"
     t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -36,8 +38,11 @@ ActiveRecord::Schema.define(:version => 20111016031321) do
     t.string   "registration_number"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "father"
-    t.string   "mother"
+    t.integer  "semester"
+    t.date     "entry_date"
+    t.string   "tutor"
+    t.string   "tutor_address"
+    t.string   "tutor_phone"
     t.string   "home_phone"
     t.string   "cell_phone"
     t.text     "address"
@@ -48,7 +53,10 @@ ActiveRecord::Schema.define(:version => 20111016031321) do
   end
 
   create_table "subjects", :force => true do |t|
+    t.integer  "school_id"
+    t.string   "key"
     t.string   "name"
+    t.integer  "units"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

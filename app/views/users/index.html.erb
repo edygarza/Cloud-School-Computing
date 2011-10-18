@@ -4,10 +4,10 @@ first_name_data = Array.new
 last_name_data = Array.new
 email_data = Array.new
 @school.users.each do |user|
-  username_data.push(user.username)
-  first_name_data.push(user.first_name)
-  last_name_data.push(user.last_name)
-  email_data.push(user.email)
+  username_data.push(user.username) if !username_data.include?(user.username)
+  first_name_data.push(user.first_name) if !first_name_data.include?(user.first_name)
+  last_name_data.push(user.last_name) if !last_name_data.include?(user.last_name)
+  email_data.push(user.email) if !email_data.include?(user.email)
 end
 %>
 
