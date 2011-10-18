@@ -41,7 +41,7 @@ end
     });
   });
 
-  function loadMore(pageNo) {
+  function loadMoreUsers(pageNo) {
     var url = '/schools/<%= @school.id %>/users/page/';
     <% searchf = "?utf8=✓&q="+params[:q]+"&type="+params[:type] if !params[:q].nil?%>
     $.get(url + pageNo + '<%= searchf %>', function(response) {
@@ -51,8 +51,8 @@ end
 
   $(document).ready(function() {
     var currPage = 1;
-    $("button.next").click(function() {
-      loadMore(++currPage);
+    $("button.users_next").click(function() {
+      loadMoreUsers(++currPage);
     });
   });  
 </script>
@@ -98,11 +98,11 @@ end
   </tbody>
 </table>
 
-<div id="next_link">
+<div id="users_next_link">
   <% if !@users.last_page? %>
     <br/>
     <center>
-      <%= button_tag "Load more", :class => "next", :style => "width:300px;" %>
+      <%= button_tag "Load more", :class => "users_next", :style => "width:300px;" %>
     </center>
   <% end %>
 </div>

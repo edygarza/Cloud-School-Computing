@@ -33,7 +33,7 @@
     });
   });
 
-  function loadMore(pageNo) {
+  function loadMoreSubjects(pageNo) {
     var url = '/schools/<%= @school.id %>/subjects/page/';
     <% searchf = "?utf8=✓&q="+params[:q] if !params[:q].nil?%>
     $.get(url + pageNo + '<%= searchf %>', function(response) {
@@ -43,8 +43,8 @@
 
   $(document).ready(function() {
     var currPage = 1;
-    $("button.next").click(function() {
-      loadMore(++currPage);
+    $("button.subjects_next").click(function() {
+      loadMoreSubjects(++currPage);
     });
   });  
 </script>
@@ -85,11 +85,11 @@
   </tbody>
 </table>
 
-<div id="next_link">
+<div id="subjects_next_link">
   <% if !@subjects.last_page? %>
     <br/>
     <center>
-      <%= button_tag "Load more", :class => "next", :style => "width:300px;" %>
+      <%= button_tag "Load more", :class => "subjects_next", :style => "width:300px;" %>
     </center>
   <% end %>
 </div>
