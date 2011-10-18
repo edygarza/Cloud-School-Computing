@@ -22,7 +22,7 @@
     <li><a href="#tab-students">Estudiantes</a></li>
   </ul>
   <div id="tab-info">
-    Tel&eacute;fono: <%= number_to_phone(@school.telephone) %><br/>
+    Tel&eacute;fono: <%= number_to_phone(@school.telephone, :area_code => true) %><br/>
     Direcci&oacute;n: <%= @school.address %><br/>
     Pa&iacute;s: <%= @school.country %><br/>
     C&oacute;digo Postal: <%= @school.zip_code %><br/>

@@ -29,10 +29,10 @@ end
   $(function() {
     var data = [
       <%
- 	username_data.each {|u| %> { label: '<%= u %>', category: 'Username' }, <% }
-        email_data.each {|em| %> { label: '<%= em %>', category: 'Email' }, <% }
-        first_name_data.each {|fn| %> { label: '<%= fn %>', category: 'First Name' }, <% }
-        last_name_data.each {|ln| %> { label: '<%= ln %>', category: 'Last Name' }, <% }
+ 	username_data.each {|u| %> { label: "<%= u %>", category: "Username" }, <% }
+        email_data.each {|em| %> { label: "<%= em %>", category: "Email" }, <% }
+        first_name_data.each {|fn| %> { label: "<%= fn %>", category: "First Name" }, <% }
+        last_name_data.each {|ln| %> { label: "<%= ln %>", category: "Last Name" }, <% }
       %>
       ];
     $("#search_field").catcomplete({

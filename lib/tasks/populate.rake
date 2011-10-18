@@ -11,9 +11,9 @@ namespace :db do
       user.crypted_password = User.encrypt("test")
       user.first_name = Faker::Name.first_name
       user.last_name = Faker::Name.last_name
-      user.home_phone = Faker::PhoneNumber.phone_number
-      user.office_phone = Faker::PhoneNumber.phone_number
-      user.cell_phone = Faker::PhoneNumber.phone_number 
+      user.home_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      user.office_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      user.cell_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
       user.address = Faker::Address.street_address
       user.email = Faker::Internet.email
       user.director = "t"
@@ -26,7 +26,7 @@ namespace :db do
       school.address = Faker::Address.street_address
       school.zip_code = Faker::Address.zip_code
       school.country = Faker::Address.country
-      school.telephone = Faker::PhoneNumber.phone_number
+      school.telephone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
 
       User.populate 5..30 do |user|
         user.school_id = school.id
@@ -34,9 +34,9 @@ namespace :db do
       	user.crypted_password = User.encrypt("test")
       	user.first_name = Faker::Name.first_name
       	user.last_name = Faker::Name.last_name
-      	user.home_phone = Faker::PhoneNumber.phone_number
-      	user.office_phone = Faker::PhoneNumber.phone_number
-      	user.cell_phone = Faker::PhoneNumber.phone_number
+      	user.home_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      	user.office_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      	user.cell_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
       	user.address =  Faker::Address.street_address
       	user.email = Faker::Internet.email
       	user.admin = "f"
@@ -54,9 +54,9 @@ namespace :db do
 	student.entry_date = 2.years.ago..Time.now
 	student.tutor = Faker::Name.name
 	student.tutor_address = Faker::Address.street_address
-	student.tutor_phone = Faker::PhoneNumber.phone_number
-	student.home_phone = Faker::PhoneNumber.phone_number
-	student.cell_phone = Faker::PhoneNumber.phone_number
+	student.tutor_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+	student.home_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+	student.cell_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
 	student.address = Faker::Address.street_address
 	student.notes = Populator.paragraphs(1..3)
       end
