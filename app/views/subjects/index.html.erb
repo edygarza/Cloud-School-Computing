@@ -27,7 +27,7 @@
       	<% key_data.each {|k| %> { label: "<%= k %>", category: "Clave" }, <% } %>
 	<% name_data.each {|s| %> { label: "<%= s %>", category: "Materia" }, <% } %>
       ];
-    $("#search_field").catcomplete({
+    $("#subjects_search_field").catcomplete({
       delay: 0,
       source: data
     });
@@ -53,7 +53,7 @@
 
 <center>
   <%= form_tag(school_subjects_path(@school), :method => :get, :autocomplete => "off") do  %>
-    <%= text_field_tag :q, params[:q], :id => "search_field" %>
+    <%= text_field_tag :q, params[:q], :id => "subjects_search_field" %>
     <%= submit_tag "Buscar", :name => nil %>
   <% end %>
 </center>

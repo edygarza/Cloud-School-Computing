@@ -35,7 +35,7 @@ end
         last_name_data.each {|ln| %> { label: "<%= ln %>", category: "Last Name" }, <% }
       %>
       ];
-    $("#search_field").catcomplete({
+    $("#user_search_field").catcomplete({
       delay: 0,
       source: data
     });
@@ -62,7 +62,7 @@ end
 <% end %>
 <center>
   <%= form_tag(school_users_path(@school), :method => :get, :autocomplete => "off") do  %>
-    <%= text_field_tag :q, params[:q], :id => "search_field" %>
+    <%= text_field_tag :q, params[:q], :id => "user_search_field" %>
     <%= select_tag :type, "<option value=''>Todos</option><option value='0'>Profesores</option><option value='1'>Asistentes</option>".html_safe %>
     <%= submit_tag "Buscar", :name => nil %>
   <% end %>
