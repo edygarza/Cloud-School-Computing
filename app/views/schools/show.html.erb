@@ -23,12 +23,13 @@
   </ul>
   <div id="tab-info">
     Tel&eacute;fono: <%= number_to_phone(@school.telephone, :area_code => true) %><br/>
-    Direcci&oacute;n: <%= @school.address %><br/>
+    Direcci&oacute;n: <%= @school.street_name %> <%= @school.street_number %>, <%= @school.district %><br/>
+    Ciudad/Estado: <%= @school.city %>, <%= @school.state %><br/>
     Pa&iacute;s: <%= @school.country %><br/>
     C&oacute;digo Postal: <%= @school.zip_code %><br/>
 
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-    <script>showMapAddress("<%= @school.address %>, <%= @school.zip_code %>, <%= @school.country %>");</script>
+    <script>showMapAddress("<%= @school.street_name %> <%= @school.street_number %>, <%= @school.district %>, <%= @school.city %>, <%= @school.state %>, <%= @school.zip_code %>, <%= @school.country %>");</script>
   </div>
   <div id="tab-users">
     <% @users = @school.users.page().per(10) %>

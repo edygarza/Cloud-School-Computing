@@ -6,9 +6,10 @@ class School < ActiveRecord::Base
   has_many :subjects, :dependent => :destroy	
   has_many :groups, :dependent => :destroy
 
-  attr_accessible :owner_id, :name, :description, :address, :telephone,
-		  :zip_code, :country
-  validates :name, :description, :address, :country, :presence => true
+  attr_accessible :owner_id, :name, :description, :street_number, :telephone,
+		  :zip_code, :country, :street_name, :district, :city, :state
+  validates :name, :description, :street_name, :street_number, :district, :city, :state, :country, :presence => true
   validates :telephone, :numericality => true, :length => { :in => 7..10 }, :presence => true
   validates :zip_code, :numericality => true, :presence => true
 end
+

@@ -23,9 +23,13 @@ namespace :db do
       school.name = Populator.words(1..2).capitalize
       school.owner_id = 1
       school.description = Populator.sentences(10..20)
-      school.address = Faker::Address.street_address
-      school.zip_code = Faker::Address.zip_code
-      school.country = Faker::Address.country
+      school.street_name = Faker::Address.street_name
+      school.street_number = 1..9999
+      school.district = ""
+      school.city = Faker::Address.city
+      school.state = Faker::Address.us_state      
+      school.zip_code = Faker::Address.uk_postcode
+      school.country = "United States"
       school.telephone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
 
       User.populate 5..30 do |user|
