@@ -2,15 +2,15 @@
   <%= f.error_messages %>
   <strong>Nivel:</strong> <%= @school.name %><br/>
   <p>
-    <%= f.label :registration_number %><br />
+    <%= f.label :registration_number, "Matricula" %><br />
     <%= f.text_field :registration_number %>
   </p>
   <p>
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name, "Nombre(s)" %><br />
     <%= f.text_field :first_name %>
   </p>
   <p>
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name, "Apellido(s)" %><br />
     <%= f.text_field :last_name %>
   </p>
   <p>
@@ -19,79 +19,79 @@
     <%= f.hidden_field :avatar_cache %>
   </p>
   <p>
-    <%= f.label :semester %><br />
+    <%= f.label :semester, "Semestre" %><br />
     <%= f.text_field :semester %>
   </p>
   <p>
-    <%= f.label :entry_date %><br />
+    <%= f.label :entry_date, "Fecha que entro" %><br />
     <%= f.date_select :entry_date %>
   </p>
   <p>
-    <%= f.label :home_phone %><br />
+    <%= f.label :home_phone, "Telefono de Casa" %><br />
     <%= f.text_field :home_phone %>
   </p>
   <p>
-    <%= f.label :cell_phone %><br />
+    <%= f.label :cell_phone, "Telefono Celular" %><br />
     <%= f.text_field :cell_phone %>
   </p>
   <p>
-    <%= f.label :street_name %><br />
+    <%= f.label :street_name, "Calle" %><br />
     <%= f.text_field :street_name %>
   </p>
   <p>
-    <%= f.label :street_number %><br />
+    <%= f.label :street_number, "Numero" %><br />
     <%= f.text_field :street_number %>
   </p>
   <p>
-    <%= f.label :district %><br />
+    <%= f.label :district, "Colonia" %><br />
     <%= f.text_field :district %>
   </p>
   <p>
-    <%= f.label :city %><br />
+    <%= f.label :city, "Ciudad" %><br />
     <%= f.text_field :city %>
   </p>
   <p>
-    <%= f.label :state %><br />
+    <%= f.label :state, "Estado" %><br />
     <%= f.text_field :state %>
   </p>
   <p>
-    <%= f.label :country %><br />
+    <%= f.label :country, "Pais" %><br />
     <%= f.text_field :country %>
   </p>
   <p>
-    <%= f.label :tutor %><br />
+    <%= f.label :tutor, "Nombre del Tutor" %><br />
     <%= f.text_field :tutor %>
   </p>
   <p>
-    <%= f.label :tutor_street_name %><br />
+    <%= f.label :tutor_street_name, "Calle" %><br />
     <%= f.text_field :tutor_street_name %>
   </p>
   <p>
-    <%= f.label :tutor_street_number %><br />
+    <%= f.label :tutor_street_number, "Numero" %><br />
     <%= f.text_field :tutor_street_number %>
   </p>
   <p>
-    <%= f.label :tutor_district %><br />
+    <%= f.label :tutor_district, "Colonia" %><br />
     <%= f.text_field :tutor_district %>
   </p>
   <p>
-    <%= f.label :tutor_city %><br />
+    <%= f.label :tutor_city, "Ciudad" %><br />
     <%= f.text_field :tutor_city %>
   </p>
   <p>
-    <%= f.label :tutor_state %><br />
+    <%= f.label :tutor_state, "Estado" %><br />
     <%= f.text_field :tutor_state %>
   </p>
   <p>
-    <%= f.label :tutor_country %><br />
+    <%= f.label :tutor_country, "Pais" %><br />
     <%= f.text_field :tutor_country %>
   </p>
   <p>
-    <%= f.label :tutor_phone %><br />
+    <%= f.label :tutor_phone, "Telefono" %><br />
     <%= f.text_field :tutor_phone %>
   </p>
   <p>
-    <%= f.label :notes %><br />
+    <%= f.label :notes, "Notas" %><br />
     <%= f.text_area :notes %>
   </p>
   <p><%= f.submit %></p>

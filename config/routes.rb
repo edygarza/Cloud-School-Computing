@@ -8,6 +8,7 @@ CloudSchoolComputing::Application.routes.draw do
 
     match '/users/page/:page_id' => 'users#more'
     match '/subjects/page/:page_id' => 'subjects#more'
+    match '/students/page/:page_id' => 'students#more'
   end
   
   resources :groups

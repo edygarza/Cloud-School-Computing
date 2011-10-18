@@ -1,0 +1,7 @@
+<%= render @students %>
+
+<% if @students.last_page? %>
+<script>
+document.getElementById("students_next_link").innerHTML = "";
+</script>
+<% end %>
