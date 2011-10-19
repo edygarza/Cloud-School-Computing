@@ -1,10 +1,18 @@
 CloudSchoolComputing::Application.routes.draw do
   resources :schools do
+    resources :groups
     resources :users
     get 'teachers' => "users#teachers"
     resources :students
     resources :subjects
+
+    match '/users/page/:page_id' => 'users#more'
+    match '/subjects/page/:page_id' => 'subjects#more'
+    match '/students/page/:page_id' => 'students#more'
   end
+  
+  resources :groups
+  resources :users
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

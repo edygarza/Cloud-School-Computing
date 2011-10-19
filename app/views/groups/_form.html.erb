@@ -1,0 +1,16 @@
+<%= form_for @group do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :subject_id %><br />
+    <%= f.number_field :subject_id %>
+  </p>
+  <p>
+    <%= f.label :classroom %><br />
+    <%= f.text_field :classroom %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

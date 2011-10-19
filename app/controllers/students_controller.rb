@@ -4,7 +4,18 @@ class StudentsController < ApplicationController
 
   def index
     @school = School.find(params[:school_id])
-    @students = @school.students
+    query = "registration_number LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR tutor LIKE ?"
+    @students = @school.students.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    @students = @students.page().per(10)
+  end
+
+  def more
+    @school = School.find(params[:school_id])
+    query = "registration_number LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR tutor LIKE ?"
+    @students = @school.students.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    @students = @students.page(params[:page_id]).per(10)
+  
+    render :layout => false
   end
 
   def show

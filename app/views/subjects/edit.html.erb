@@ -1,8 +1,7 @@
-<% title "Edit Subject" %>
+<% title "Editar Materia" %>
+<center>
+  <%= link_to "Ver Materia", school_subject_path(@subject.school, @subject) %> |
+  <%= link_to "Ver Toda la Lista", school_subjects_path %>
+</center>
 
 <%= render 'form' %>
-
-<p>
-  <%= link_to "Show", school_subject_path(@subject.school, @subject) %> |
-  <%= link_to "View All", school_subjects_path %>
-</p>

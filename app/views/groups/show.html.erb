@@ -1,0 +1,24 @@
+<% title "Group" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @group.user_id %>
+</p>
+<p>
+  <strong>Subject:</strong>
+  <%= @group.subject_id %>
+</p>
+<p>
+  <strong>Classroom:</strong>
+  <%= @group.classroom %>
+</p>
+
+<p>
+  <% if can? :edit, @group %>
+    <%= link_to "Edit", edit_school_group_path(@group.school, @group) %> |
+  <% end %>
+  <% if can? :destroy, @group %>
+    <%= link_to "Destroy", school_group_path(@group.school, @group), :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
+  <%= link_to "View All", school_groups_path(@group.school) %>
+</p>

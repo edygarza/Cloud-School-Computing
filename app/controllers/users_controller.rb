@@ -4,7 +4,36 @@ class UsersController < ApplicationController
 
   def index
     @school = School.find(params[:school_id])
-    @users = @school.users
+    query = "username LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ?"
+    if params[:type].nil? || params[:type].blank?
+      @users = @school.users.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    else
+      if params[:type] == "0"
+    	query = "(" + query + ") AND teacher = 't'"    
+      else
+        query = "(" + query + ") AND assistant = 't'"
+      end
+      @users = @school.users.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%") 
+    end
+    @users = @users.page().per(10)
+  end
+
+  def more
+    @school = School.find(params[:school_id])
+    query = "username LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ?"
+    if params[:type].nil? || params[:type].blank?
+      @users = @school.users.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    else
+      if params[:type] == "0"
+        query = "(" + query + ") AND teacher = 't'"
+      else 
+        query = "(" + query + ") AND assistant = 't'" 
+      end
+      @users = @school.users.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    end
+    @users = @users.page(params[:page_id]).per(10)
+
+    render :layout => false
   end
 
   def show

@@ -3,19 +3,27 @@
   <table align="center">
   <tr>
     <td valign="top">
-      <%= f.label :name %><br />
+      <%= f.label :name, "Nombre" %><br />
       <%= f.text_field :name %><br/><br/>
-      <%= f.label :description %><br />
+      <%= f.label :description, "Descripcion" %><br />
       <%= f.text_area :description, :rows => 8 %><br/><br/>
-      <%= f.label :telephone %><br />
+      <%= f.label :telephone, "Telefono" %><br />
       <%= f.text_field :telephone %>
     </td>
     <td>
-      <%= f.label :address %><br />
-      <%= f.text_area :address, :rows => 8 %><br/><br/>
-      <%= f.label :zip_code %><br />
+      <%= f.label :street_name, "Calle" %><br />
+      <%= f.text_field :street_name %><br/><br/>
+      <%= f.label :street_number, "Numero" %><br />
+      <%= f.text_field :street_number %><br/><br/>
+      <%= f.label :district, "Distrito" %><br />
+      <%= f.text_field :district %><br/><br/>
+      <%= f.label :city, "Ciudad" %><br />
+      <%= f.text_field :city %><br/><br/>
+      <%= f.label :state, "Estado" %><br />
+      <%= f.text_field :state %><br/><br/>
+      <%= f.label :zip_code, "Codigo Postal" %><br />
       <%= f.text_field :zip_code %><br/><br/>
-      <%= f.label :country %><br />
+      <%= f.label :country, "Pais" %><br />
       <%= f.text_field :country %><br/><br/>
     </td>
   </tr>

@@ -1,8 +1,73 @@
 <%
+  reg_number_data = Array.new
+  first_name_data = Array.new
+  last_name_data = Array.new
+  tutor_data = Array.new
+  @school.students.each do |student|
+    reg_number_data.push(student.registration_number) if !reg_number_data.include?(student.registration_number)
+    first_name_data.push(student.first_name) if !first_name_data.include?(student.first_name)
+    last_name_data.push(student.last_name) if !last_name_data.include?(student.last_name)
+    tutor_data.push(student.tutor) if !tutor_data.include?(student.tutor)
+  end
+%>
+
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'><b>" + item.category + "</b></li>" );
+          currentCategory = item.category;
+        }
+        self._renderItem( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+    var data = [
+      	<% reg_number_data.each {|k| %> { label: "<%= k %>", category: "Matricula" }, <% } %>
+	<% first_name_data.each {|fn| %> { label: "<%= fn %>", category: "Nombre" }, <% } %>
+	<% last_name_data.each {|ln| %> { label: "<%= ln %>", category: "Apellido" }, <% } %>
+	<% tutor_data.each {|t| %> { label: "<%= t %>", category: "Tutor" }, <% } %>
+      ];
+    $("#students_search_field").catcomplete({
+      delay: 0,
+      source: data
+    });
+  });
+
+  function loadMoreStudents(pageNo) {
+    var url = '/schools/<%= @school.id %>/students/page/';
+    <% searchf = "?utf8=✓&q="+params[:q] if !params[:q].nil?%>
+    $.get(url + pageNo + '<%= searchf %>', function(response) {
+      $("#students_data").append(response);
+    });
+  }
+
+  $(document).ready(function() {
+    var currPage = 1;
+    $("button.students_next").click(function() {
+      loadMoreStudents(++currPage);
+    });
+  });  
+</script>
+
+
+<%
   if !show_title? 
     title "Estudiantes" 
   end 
 %>
+
+<center>
+  <%= form_tag(school_students_path(@school), :method => :get, :autocomplete => "off") do  %>
+    <%= text_field_tag :q, params[:q], :id => "students_search_field" %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</center>
 
 <table id="box-table-a">
   <thead>
@@ -16,41 +81,29 @@
     <% end %>
     <tr>
       <th></th>
-      <th>Reg. Number</th>
-      <th>Name</th>
-      <th>Home Phone</th>
-      <th>Cell Phone</th>
+      <th>Matr&iacute;cula</th>
+      <th>Nombre</th>
+      <th>Tel. Casa</th>
+      <th>Celular</th>
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    <% if @students.nil? %>
+  <tbody id="students_data">
+    <% if @students.empty? %>
       <tr>
-    	<td>
-	  <i>No hay estudiantes en existencia</i>
-	</td>
+        <td colspan="6" align="center"><i>No existen estudiantes</i></td>
       </tr>
-    <% end %>
-    <% for student in @students %>
-      <tr>
-        <td valign="middle">
-	  <%= link_to image_tag("card-info.png"), school_student_path(student.school,student) %>
-        </td>
-	<td>
-	  <%= link_to student.registration_number, school_student_path(student.school,student) %>
-	</td>
-        <td><%= student.first_name %> <%= student.last_name %></td>
-        <td><%= number_to_phone(student.home_phone) %></td>
-        <td><%= number_to_phone(student.cell_phone) %></td>
-        <td>
-	  <% if can? :edit, student %>
-	    <%= link_to image_tag("edit.png",:height => 20), edit_school_student_path(student.school,student) %>
-	  <% end %>
-	  <% if can? :destroy, student %>
-	    <%= link_to image_tag("delete.png",:height => 20), [student.school,student], :confirm => 'Are you sure?', :method => :delete %>
-	  <% end %>
-        </td>
-      </tr>
+    <% else %>
+      <%= render @students %>
     <% end %>
   </tbody>
 </table>
+
+<div id="students_next_link">
+  <% if !@students.last_page? %>
+    <br/>
+    <center>
+      <%= button_tag "Load more", :class => "students_next", :style => "width:300px;" %>
+    </center>
+  <% end %>
+</div>

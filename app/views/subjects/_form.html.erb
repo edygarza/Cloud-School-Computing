@@ -1,15 +1,15 @@
 <%= form_for [School.find(params[:school_id]),@subject] do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :key %><br />
+    <%= f.label :key, "Clave" %><br />
     <%= f.text_field :key %>
   </p>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "Nombre" %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :units %><br />
+    <%= f.label :units, "Unidades" %><br />
     <%= f.text_field :units %>
   </p>
   <p><%= f.submit %></p>

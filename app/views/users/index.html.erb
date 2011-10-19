@@ -1,30 +1,109 @@
 <%
-  if !show_title?
-    title "Usuarios"
-  end 
+username_data = Array.new
+first_name_data = Array.new
+last_name_data = Array.new
+email_data = Array.new
+@school.users.each do |user|
+  username_data.push(user.username) if !username_data.include?(user.username)
+  first_name_data.push(user.first_name) if !first_name_data.include?(user.first_name)
+  last_name_data.push(user.last_name) if !last_name_data.include?(user.last_name)
+  email_data.push(user.email) if !email_data.include?(user.email)
+end
 %>
 
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'><b>" + item.category + "</b></li>" );
+          currentCategory = item.category;
+        }
+        self._renderItem( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+    var data = [
+      <%
+ 	username_data.each {|u| %> { label: "<%= u %>", category: "Username" }, <% }
+        email_data.each {|em| %> { label: "<%= em %>", category: "Email" }, <% }
+        first_name_data.each {|fn| %> { label: "<%= fn %>", category: "First Name" }, <% }
+        last_name_data.each {|ln| %> { label: "<%= ln %>", category: "Last Name" }, <% }
+      %>
+      ];
+    $("#user_search_field").catcomplete({
+      delay: 0,
+      source: data
+    });
+  });
+
+  function loadMoreUsers(pageNo) {
+    var url = '/schools/<%= @school.id %>/users/page/';
+    <% searchf = "?utf8=✓&q="+params[:q]+"&type="+params[:type] if !params[:q].nil?%>
+    $.get(url + pageNo + '<%= searchf %>', function(response) {
+      $("#users_data").append(response);
+    });
+  }
+
+  $(document).ready(function() {
+    var currPage = 1;
+    $("button.users_next").click(function() {
+      loadMoreUsers(++currPage);
+    });
+  });  
+</script>
+
+<% if !show_title? %>
+  <% title "Usuarios" %>
+<% end %>
+<center>
+  <%= form_tag(school_users_path(@school), :method => :get, :autocomplete => "off") do  %>
+    <%= text_field_tag :q, params[:q], :id => "user_search_field" %>
+    <%= select_tag :type, "<option value=''>Todos</option><option value='0'>Profesores</option><option value='1'>Asistentes</option>".html_safe %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</center>
+
 <table id="box-table-a">
-  <% if can? :create, @school => User %>
+  <thead>
+    <% if can? :create, @school => User %>
+      <tr>
+        <td colspan="100">
+          <%= link_to image_tag("add.png", :height => 14), new_school_user_path(@school) %>
+  	  <%= link_to "Crear Usuario", new_school_user_path(@school) %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
-      <td colspan="100">
-	<%= link_to "Crear Usuario", new_school_user_path(@school) %>
-      </td>
+      <th>Usuario</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Email</th>
+      <th>Abilidades</th>
+      <th></th>
     </tr>
-  <% end %>
-  <tr>
-    <th>User</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-  </tr>
-  <% for user in @users %>
-    <tr>
-      <td><%= user.username %></td>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= link_to "Show", school_user_path(user.school,user) %></td>
-      <td><%= link_to "Edit", edit_school_user_path(user.school,user) %></td>
-      <td><%= link_to "Destroy", school_user_path(user.school,user), :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+  </thead>
+  <tbody id="users_data">
+    <% if @users.empty? %>
+      <tr>
+        <td colspan="6" align="center"><i>No existen usuarios</i></td>
+      </tr>
+    <% else %>
+      <%= render @users %>
+    <% end %>
+  </tbody>
 </table>
+
+<div id="users_next_link">
+  <% if !@users.last_page? %>
+    <br/>
+    <center>
+      <%= button_tag "Load more", :class => "users_next", :style => "width:300px;" %>
+    </center>
+  <% end %>
+</div>
+

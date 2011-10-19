@@ -10,7 +10,7 @@ $(document).ready(function() {
       <li>
 	<%= link_to "Niveles", schools_path %>
 	<ul>
-	  <% School.accessible_by(current_ability).each do |school| %>
+	  <% School.where(:owner_id => current_user).each do |school| %>
             <li>
 	      <%= link_to school.name, school %>
 	      <ul>
@@ -33,5 +33,10 @@ $(document).ready(function() {
   <% else %>
     <li><%= link_to "Sign Up", signup_path %></li>
     <li><%= link_to "Login", login_path %></li>
+  <% end %>
+  <% if !current_user.nil? %>
+    <div style="float:right;padding:10px 15px;">
+      Bienvenido, <%= current_user.first_name %> <%= current_user.last_name %>!
+    </div>
   <% end %>
 </ul>

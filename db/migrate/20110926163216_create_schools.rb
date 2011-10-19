@@ -4,9 +4,13 @@ class CreateSchools < ActiveRecord::Migration
       t.integer :owner_id
       t.string :name
       t.text :description
-      t.text :address
-      t.integer :zip_code
-      t.text :country
+      t.string :street_name
+      t.string :street_number
+      t.string :district
+      t.string :city
+      t.string :state
+      t.string :zip_code
+      t.string :country
       t.string :telephone
       t.timestamps
     end

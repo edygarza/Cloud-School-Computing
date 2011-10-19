@@ -1,0 +1,13 @@
+<tr>
+  <td align="center"><%= link_to subject.key, school_subject_path(subject.school,subject) %></td>
+  <td><%= subject.name %></td>
+  <td align="center"><%= subject.units %></td>
+  <td>
+    <% if can? :update, subject %>
+      <%= link_to image_tag("edit.png", :height => 20), edit_school_subject_path(subject.school,subject) %>
+    <% end %>
+    <% if can? :destroy, subject %>
+      <%= link_to image_tag("delete.png", :height => 20), school_subject_path(subject.school,subject), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  </td>
+</tr>

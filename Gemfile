@@ -5,6 +5,9 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'populator'
+gem 'faker'
+gem 'kaminari'
 gem 'sqlite3'
 gem 'sorcery'
 gem 'json'
