@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :username %>
+    <%= f.label :username %><br />
     <%= f.text_field :username %>
   </div>
   <% if (!@user.school.nil? && @user.school.owner == current_user) || current_user.admin? %>
@@ -21,31 +21,31 @@
     <%= f.label :assistant, 'Asistente' %><span></span><br />
   <% end %>
   <div class="field">
-    <%= f.label :email %>
+    <%= f.label :email %> <br />
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :first_name %>
+    <%= f.label :first_name %> <br />
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label :last_name %> <br />
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :home_phone %>
+    <%= f.label :home_phone %> <br />
     <%= f.text_field :home_phone %>
   </div>
   <div class="field">
-    <%= f.label :office_phone %>
+    <%= f.label :office_phone %> <br />
     <%= f.text_field :office_phone %>
   </div>
   <div class="field">
-    <%= f.label :cell_phone %>
+    <%= f.label :cell_phone %> <br />
     <%= f.text_field :cell_phone %>
   </div>
   <div class="field">
-    <%= f.label :address %>
+    <%= f.label :address %> <br />
     <%= f.text_area :address %>
   </div>
   <div class="actions"><%= f.submit %></div>
