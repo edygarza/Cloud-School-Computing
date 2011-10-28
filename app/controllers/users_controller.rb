@@ -50,8 +50,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if !params[:school_id].nil?
-      school = School.find(params[:school_id])
-      @user.school = school
+      @school = School.find(params[:school_id])
+      @user.school = @school
     end
 
     if @user.save
@@ -71,6 +71,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if params[:school_id]
+      @school = School.find(params[:school_id])
+    end
+
     if @user.update_attributes(params[:user])
       redirect_to school_user_path(@user.school), :notice  => "Successfully updated user."
     else
