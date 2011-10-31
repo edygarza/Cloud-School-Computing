@@ -23,6 +23,9 @@ $(document).ready(function() {
 		<% if can? :read, school => Subject %>
 		  <li><%= link_to "Materias", school_subjects_path(school) %></li>
 		<% end %>
+		<% if can? :read, school => Group %>
+		  <li><%= link_to "Grupos", school_groups_path(school) %></li>
+		<% end %>
 	      </ul>
 	    </li>
 	  <% end %>

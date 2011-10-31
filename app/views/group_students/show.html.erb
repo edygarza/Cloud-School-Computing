@@ -1,0 +1,16 @@
+<% title "Group Student" %>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_student.group_id %>
+</p>
+<p>
+  <strong>Student:</strong>
+  <%= @group_student.student_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_group_student_path(@group_student) %> |
+  <%= link_to "Destroy", @group_student, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", group_students_path %>
+</p>

@@ -1,0 +1,30 @@
+<% title "Estudiantes de ["+@group.subject.key+"] "+@group.subject.name+" ("+@group.classroom+")" %>
+<center>
+  <%= link_to "Volver al Grupo", school_groups_path(@group.school) %>
+</center>
+
+
+<table id="box-table-a">
+  <thead>
+    <% if can? :create, @group => GroupStudent %>
+      <tr>
+	<td colspan="10">
+     	  <%= link_to image_tag("add.png",:height=>14), new_school_group_group_student_path %>
+	  <%= link_to "Agregar Estudiante al Grupo", new_school_group_group_student_path %>
+	</td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>Matr&iacute;cula</th>
+      <th>Estudiante</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @group_students.count > 0 %>
+      <%= render @group_students %>
+    <% else %>
+      <tr><td align="center"><i>No hay Alumnos en el grupo</i></td></tr>
+    <% end %>
+  </tbody>
+</table>

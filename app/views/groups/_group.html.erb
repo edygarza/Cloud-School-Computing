@@ -1,0 +1,18 @@
+<tr>
+  <td><%= User.find(group.user_id).first_name+" "+User.find(group.user_id).last_name %></td>
+  <td><%= Subject.find(group.subject_id).name %></td>
+  <td><%= group.classroom %></td>
+  <td>
+    <% if can? :read, GroupStudent %>
+      <%= link_to "Estudiantes", school_group_group_students_path(group.school, group) %>
+    <% end %>
+  </td>
+  <td width="75">
+    <% if can? :edit, group %>
+      <%= link_to image_tag("edit.png", :height => 20), edit_school_group_path(group.school,group) %>
+    <% end %>
+    <% if can? :destroy, group %>
+      <%= link_to image_tag("delete.png", :height => 20), school_group_path(group.school,group), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  </td>
+</tr>

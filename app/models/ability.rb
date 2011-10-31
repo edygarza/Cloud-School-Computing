@@ -23,11 +23,14 @@ class Ability
       can :manage, Subject do |s| 
 	s.school.owner == user
       end
-      can :create, Group
       can :manage, Group do |g|
 	g.school.owner == user
       end
       can [:new,:create], Group
+      can :create, GroupStudent
+      can :manage, GroupStudent do |gs|
+        gs.group.school.owner == user
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

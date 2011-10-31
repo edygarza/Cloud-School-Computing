@@ -1,0 +1,43 @@
+<%
+  reg_number_data = Array.new
+  first_name_data = Array.new
+  last_name_data = Array.new
+  @group.school.students.each do |student|
+    reg_number_data.push(student.registration_number) if !reg_number_data.include?(student.registration_number)
+  end
+%>
+
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'><b>" + item.category + "</b></li>" );
+          currentCategory = item.category;
+        }
+        self._renderItem( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+    var data = [
+      	<% reg_number_data.each {|k| %> { label: "<%= k %>", category: "Matricula" }, <% } %>
+      ];
+    $("#students_search_field").catcomplete({
+      delay: 0,
+      source: data
+    });
+  });
+</script>
+
+<%= form_for [@group.school,@group,@group_student] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id, :id => 'students_search_field' %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

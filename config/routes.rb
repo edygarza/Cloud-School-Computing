@@ -1,6 +1,8 @@
 CloudSchoolComputing::Application.routes.draw do
   resources :schools do
-    resources :groups
+    resources :groups do 
+      resources :group_students, :except => [:edit,:update,:show]
+    end
     resources :users
     get 'teachers' => "users#teachers"
     resources :students

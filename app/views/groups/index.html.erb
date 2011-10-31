@@ -1,31 +1,24 @@
-<% title "Groups" %>
+<% title "Grupos" %>
 
-<table>
-  <tr>
-    <th>Teacher</th>
-    <th>Subject</th>
-    <th>Classroom</th>
-  </tr>
-  <% for group in @groups %>
+<table id="box-table-a">
+  <thead>
+    <% if can? :create, Group %>
+      <tr>
+        <td colspan="10">
+	  <%= link_to image_tag("add.png", :height => 14), new_school_group_path(@school) %>
+	  <%= link_to "Nuevo Grupo", new_school_group_path(@school) %>
+	</td>
+      </tr>
+    <% end %>
     <tr>
-      <td><%= User.find(group.user_id).first_name+" "+User.find(group.user_id).last_name %></td>
-      <td><%= Subject.find(group.subject_id).name %></td>
-      <td><%= group.classroom %></td>
-      <td>
-	<% if can? :show, group %>
-	  <%= link_to "Show", school_group_path(group.school,group) %>
-	<% end %>
-      </td>
-      <% if can? :edit, group %>
-        <td><%= link_to "Edit", edit_school_group_path(group.school,group) %></td>
-      <% end %>
-      <% if can? :destroy, group %>
-        <td><%= link_to "Destroy", school_group_path(group.school,group), :confirm => 'Are you sure?', :method => :delete %></td>
-      
-      <% end %>
+      <th>Profesor</th>
+      <th>Materia</th>
+      <th>Sal&oacute;n</th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <%= render @groups %>
+  </tbody>
 </table>
-<% if can? :create, Group %>
-  <p><%= link_to "New Group", new_school_group_path(@school) %></p>
-<% end %>
