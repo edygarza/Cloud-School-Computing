@@ -27,6 +27,7 @@ class Ability
       can :manage, Group do |g|
 	g.school.owner == user
       end
+      can [:new,:create], Group
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -27,5 +27,5 @@
   <% end %>
 </table>
 <% if can? :create, Group %>
-  <p><%= link_to "New Group", new_school_group_path(group.school,group) %></p>
+  <p><%= link_to "New Group", new_school_group_path(@school) %></p>
 <% end %>

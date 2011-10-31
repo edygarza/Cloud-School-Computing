@@ -10,8 +10,7 @@ CloudSchoolComputing::Application.routes.draw do
     match '/subjects/page/:page_id' => 'subjects#more'
     match '/students/page/:page_id' => 'students#more'
   end
-  
-  resources :groups
+
   resources :users
 
   get "logout" => "sessions#destroy", :as => "logout"

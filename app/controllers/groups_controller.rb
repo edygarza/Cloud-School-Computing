@@ -2,11 +2,8 @@ class GroupsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if !params[:school_id].nil?
-      @groups = Group.where(:school_id => params[:school_id])
-    else
-      @groups = Group.all
-    end
+    @school = School.find(params[:school_id])
+    @groups = @school.groups
   end
 
   def show
@@ -14,10 +11,8 @@ class GroupsController < ApplicationController
   end
 
   def new
+    @school = School.find(params[:school_id])
     @group = Group.new
-    if !params[:school_id].nil?
-      @school = School.find(params[:school_id])
-    end
   end
 
   def create
@@ -40,6 +35,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    @school = @group.school
   end
 
   def update
