@@ -4,7 +4,7 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [User, School, Student, Subject].each(&:delete_all)
+    [User, School, Student, Subject, Group, GroupStudent, Activity].each(&:delete_all)
 
     User.populate 1 do |user|
       user.username = "director"
@@ -80,6 +80,24 @@ namespace :db do
 	subject.key = 1000...1100
 	subject.name = Populator.words(1..3)
 	subject.units = 6..12
+      end
+
+      Group.populate 5..10 do |group|
+        group.school_id = school.id
+  	group.user_id = 1..5
+	group.subject_id = 1..10
+	group.classroom = ['A101','A102','A103','A201','A202','A203','A301','A302','A303','A401','A402','A403']
+
+	GroupStudent.populate 10..20 do |group_student|
+	  group_student.group_id = group.id
+	  group_student.student_id = 1..25	  
+	end
+
+	Activity.populate 5..10 do |activity|
+	  activity.group_id = group.id
+	  activity.title = Populator.words(2..5)
+	  activity.value = 10..30
+	end
       end
     end
   end

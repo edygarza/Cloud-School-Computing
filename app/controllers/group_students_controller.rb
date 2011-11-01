@@ -1,7 +1,7 @@
 class GroupStudentsController < ApplicationController
   def index
-    @group_students = GroupStudent.all
     @group = Group.find(params[:group_id])
+    @group_students = GroupStudent.find(:all, :conditions => { :group_id => @group.id } )
   end
 
   def new
@@ -18,7 +18,7 @@ class GroupStudentsController < ApplicationController
     if !@group_student.student.nil? && @group_student.save
       redirect_to school_group_group_students_url, :notice => "Se ha agregado alumno al grupo satisfactoriamente."
     else
-      flash[:error] = "Número de Matrícula no existe"
+      flash[:error] = "Numero de Matricula no existe"
       render :action => 'new'
     end
   end

@@ -1,6 +1,6 @@
 <tr>
   <td><%= group_student.student.registration_number %></td>
   <td><%= group_student.student.first_name %> <%= group_student.student.last_name %></td>
-  <td><%= link_to "Destroy", [@group.school,@group,group_student], :confirm => 'Are you sure?', :method => :delete %></td>
+  <td><%= link_to image_tag("delete.png",:height => 20), [@group.school,@group,group_student], :confirm => 'Are you sure?', :method => :delete %></td>
 </tr>
 

@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.all
     @group = Group.find(params[:group_id])
+    @activities = @group.activities
   end
 
   def show
