@@ -32,6 +32,7 @@ class ActivitiesController < ApplicationController
 
   def update
     @activity = Activity.find(params[:id])
+    @group = Group.find(params[:group_id])
 
     if @activity.update_attributes(params[:activity])
       redirect_to school_group_activities_url, :notice  => "Se ha actualizado la actividad satisfactoriamente."
