@@ -13,6 +13,7 @@
     <tr>
       <th>Nombre de la Actividad</th>
       <th>Valor</th>
+      <th>Porcentaje</th>
       <th></th>
     </tr>
   </thead>
@@ -22,5 +23,9 @@
     <% else %>
       <tr><td align="center" colspan="3"><i>No hay actividades en este grupo</i></td></tr>
     <% end %>
+    <tr>
+      <td align="right"><b>Suma</b></td>
+      <td align="center"><%= suma(@activities) %></td>
+    </tr>
   </tbody>
 </table>
