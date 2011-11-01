@@ -1,0 +1,26 @@
+<% title "Actividades de ["+@group.subject.key+"] "+@group.subject.name+" ("+@group.classroom+")" %>
+
+<table id="box-table-a">
+  <thead>
+    <% if can? :create, @group => Activity %>
+      <tr>
+	<td colspan="100">
+	  <%= link_to image_tag("add.png",:height=>14), new_school_group_activity_path %>
+	  <%= link_to "Nueva Actividad", new_school_group_activity_path %>
+	</td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>Nombre de la Actividad</th>
+      <th>Valor</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @activities.count > 0 %>
+      <%= render @activities %>
+    <% else %>
+      <tr><td align="center" colspan="3"><i>No hay actividades en este grupo</i></td></tr>
+    <% end %>
+  </tbody>
+</table>

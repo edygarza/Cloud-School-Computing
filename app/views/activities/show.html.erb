@@ -1,0 +1,20 @@
+<% title "Activity" %>
+
+<p>
+  <strong>Group:</strong>
+  <%= @activity.group_id %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @activity.title %>
+</p>
+<p>
+  <strong>Value:</strong>
+  <%= @activity.value %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_activity_path(@activity) %> |
+  <%= link_to "Destroy", @activity, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", activities_path %>
+</p>

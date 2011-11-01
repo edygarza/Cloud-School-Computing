@@ -1,0 +1,9 @@
+one:
+  group_id: MyString
+  title: MyString
+  value: 1
+
+two:
+  group_id: MyString
+  title: MyString
+  value: 1

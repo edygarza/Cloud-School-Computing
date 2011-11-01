@@ -1,0 +1,9 @@
+<tr>
+  <td><%= activity.title %></td>
+  <td><%= activity.value %></td>
+  <td>
+    <%= link_to "Edit", edit_school_group_activity_path(@group.school,@group,activity) %>
+    <%= link_to "Destroy", [@group.school,@group,activity], :confirm => 'Are you sure?', :method => :delete %>
+  </td>
+</tr>
+

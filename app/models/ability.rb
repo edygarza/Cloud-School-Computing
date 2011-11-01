@@ -31,6 +31,10 @@ class Ability
       can :manage, GroupStudent do |gs|
         gs.group.school.owner == user
       end
+      can :create, Activity
+      can :manage, Activity do |a|
+	a.group.school.owner == user
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

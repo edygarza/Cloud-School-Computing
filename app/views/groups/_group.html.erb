@@ -6,6 +6,9 @@
     <% if can? :read, GroupStudent %>
       <%= link_to "Estudiantes", school_group_group_students_path(group.school, group) %>
     <% end %>
+    <% if can? :read, Activity %>
+      <%= link_to "Ponderaciones", school_group_activities_path(group.school,group) %>
+    <% end %>
   </td>
   <td width="75">
     <% if can? :edit, group %>
