@@ -1,0 +1,27 @@
+<% 
+@group_students = GroupStudent.where(:group_id => params[:group_id]) 
+@grade = Grade.new
+%>
+<%= form_for(@grade, :url => school_group_activity_grades_path) do |f| %>
+  <%= f.error_messages %>
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Grade</th>
+  </tr>
+  <% for group_student in @group_students    
+       @grade = Grade.where(:student_id => group_student.student_id, :activity_id => params[:activity_id]).first
+       if(!@grade.nil?)
+         grade = @grade.grade
+       else
+         grade = ""
+       end
+  %>
+    <tr>
+      <td><%= group_student.student_id %></td>
+      <td><input name="grade_<%= group_student.student_id %>" value="<%= grade %>"></td>
+    </tr>
+  <% end %>
+</table>
+  <p><%= f.submit %></p>
+<% end %>

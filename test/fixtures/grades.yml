@@ -1,0 +1,9 @@
+one:
+  student_id: 1
+  activity_id: 1
+  grade: 9.99
+
+two:
+  student_id: 1
+  activity_id: 1
+  grade: 9.99

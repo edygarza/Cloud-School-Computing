@@ -1,0 +1,10 @@
+<% title "Grades" %>
+<% 
+if(!params[:activity_id].nil?)
+%>
+<%= render 'form' %>
+<% else %>
+<%= render 'student_grades' %>
+<% end %>
+
+

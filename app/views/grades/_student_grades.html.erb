@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>Actividad</th>
+    <th>Calificación</th>
+    <th>Valor</th>
+  </tr>
+<%
+@group_student = GroupStudent.find(params[:group_student_id])
+@activities = Activity.where(:group_id => @group_student.group_id)
+total = 0
+@activities.each do |activity|
+  total = activity.value + total
+  @grade = Grade.where(:activity_id => activity.id, :student_id => @group_student.student_id).first
+%>
+  <tr>
+    <td><%= activity.title %></td>
+    <% if(!@grade.nil?) %>
+      <td><%= @grade.grade %></td>
+    <% else %>
+      <td>SC</td>
+    <% end %>
+    <td><%= activity.value %></td>
+  </tr>
+<% end %>
+</table>
+<p>Total: <%= total %></p>

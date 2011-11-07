@@ -1,0 +1,20 @@
+<% title "Grade" %>
+
+<p>
+  <strong>Student:</strong>
+  <%= @grade.student_id %>
+</p>
+<p>
+  <strong>Activity:</strong>
+  <%= @grade.activity_id %>
+</p>
+<p>
+  <strong>Grade:</strong>
+  <%= @grade.grade %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_grade_path(@grade) %> |
+  <%= link_to "Destroy", @grade, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", grades_path %>
+</p>
