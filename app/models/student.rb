@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   has_many :group_students
   has_many :groups, :through => :group_students
+  has_many :grades
 
   attr_accessible :school_id, :registration_number, :first_name, :last_name, :home_phone, :cell_phone, :notes,
 		  :semester, :entry_date, :tutor, :tutor_phone, :avatar, :street_name, :street_number, :district,

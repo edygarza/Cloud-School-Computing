@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
 	redirect_to school_groups_path, :notice => "Added Group!"
       end      
     else
-      render :new
+      render :action => 'new'
     end
   end
 
