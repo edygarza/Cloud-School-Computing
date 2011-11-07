@@ -7,6 +7,19 @@ namespace :db do
     [User, School, Student, Subject, Group, GroupStudent, Activity].each(&:delete_all)
 
     User.populate 1 do |user|
+      user.username = "admin"
+      user.crypted_password = User.encrypt("test")
+      user.first_name = Faker::Name.first_name
+      user.last_name = Faker::Name.last_name
+      user.home_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      user.office_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      user.cell_phone = Faker::PhoneNumber.phone_number.delete("^0-9")[0..9]
+      user.address = Faker::Address.street_address
+      user.email = Faker::Internet.email
+      user.admin = "t"
+    end
+
+    User.populate 1 do |user|
       user.username = "director"
       user.crypted_password = User.encrypt("test")
       user.first_name = Faker::Name.first_name
@@ -21,7 +34,7 @@ namespace :db do
 
     School.populate 3 do |school|
       school.name = Populator.words(1..2).capitalize
-      school.owner_id = 1
+      school.owner_id = 2
       school.description = Populator.sentences(10..20)
       school.street_name = Faker::Address.street_name
       school.street_number = 1..9999
@@ -44,7 +57,7 @@ namespace :db do
       	user.address =  Faker::Address.street_address
       	user.email = Faker::Internet.email
       	user.admin = "f"
-      	user.director = ["t","f"]
+      	user.director = "f"
       	user.assistant = ["t","f"]
       	user.teacher = ["t","f"]
       end

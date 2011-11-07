@@ -1,0 +1,28 @@
+<% title "Package" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @package.name %>
+</p>
+<p>
+  <strong>Users Limit:</strong>
+  <%= @package.users_limit %>
+</p>
+<p>
+  <strong>Students Limit:</strong>
+  <%= @package.students_limit %>
+</p>
+<p>
+  <strong>Groups Limit:</strong>
+  <%= @package.groups_limit %>
+</p>
+<p>
+  <strong>Subjects Limit:</strong>
+  <%= @package.subjects_limit %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_package_path(@package) %> |
+  <%= link_to "Destroy", @package, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", packages_path %>
+</p>

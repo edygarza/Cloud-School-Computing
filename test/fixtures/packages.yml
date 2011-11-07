@@ -1,0 +1,13 @@
+one:
+  name: MyString
+  users_limit: 1
+  students_limit: 1
+  groups_limit: 1
+  subjects_limit: 1
+
+two:
+  name: MyString
+  users_limit: 1
+  students_limit: 1
+  groups_limit: 1
+  subjects_limit: 1

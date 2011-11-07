@@ -1,0 +1,24 @@
+<% title "Paquetes" %>
+
+<table id="box-table-a">
+  <thead>
+    <tr>
+      <td colspan="10"><%= link_to "Nuevo Paquete", new_package_path %></td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <th>Usuarios Limite</th>
+      <th>Estudiantes Limite</th>
+      <th>Grupos Limite</th>
+      <th>Materias Limite</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @packages.count > 0 %>
+      <%= render @packages %>
+    <% else %>
+      <tr><td colspan="10" align="center"><i>No hay paquetes a mostrar</i></td></tr>
+    <% end %>
+  </tbody>
+</table>

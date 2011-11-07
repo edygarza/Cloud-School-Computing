@@ -1,0 +1,24 @@
+<%= form_for @package do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :users_limit %><br />
+    <%= f.number_field :users_limit %>
+  </p>
+  <p>
+    <%= f.label :students_limit %><br />
+    <%= f.number_field :students_limit %>
+  </p>
+  <p>
+    <%= f.label :groups_limit %><br />
+    <%= f.number_field :groups_limit %>
+  </p>
+  <p>
+    <%= f.label :subjects_limit %><br />
+    <%= f.number_field :subjects_limit %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

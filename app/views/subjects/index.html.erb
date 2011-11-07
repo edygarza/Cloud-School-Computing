@@ -60,12 +60,14 @@
 
 <table id="box-table-a">
   <thead>
+    <% if can? :create, @school => Subject %>
     <tr>
       <td colspan="10">
 	<%= link_to image_tag("add.png", :height => 14), new_school_subject_path(@school) %>
         <%= link_to "Nueva Materia", new_school_subject_path(@school) %>
       </td>
     </tr>
+    <% end %>
     <tr>
       <th>Clave</th>
       <th>Nombre</th>

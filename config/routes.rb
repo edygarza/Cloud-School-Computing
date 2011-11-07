@@ -1,4 +1,6 @@
 CloudSchoolComputing::Application.routes.draw do
+  resources :packages
+
   resources :schools do
     resources :groups do 
       resources :group_students, :except => [:edit,:update,:show] do
@@ -19,13 +21,16 @@ CloudSchoolComputing::Application.routes.draw do
     match '/students/page/:page_id' => 'students#more'
   end
 
-  resources :users
-
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
   resources :sessions, :only => [:create, :destroy]
-  resources :users
+
+  get '/users' => 'users#admin_index'
+  get 'users/:id/edit' => 'users#admin_edit', :as => 'edit_user'
+  get 'users/:id' => 'users#admin_show', :as => 'user'
+  put 'users/:id' => 'users#admin_update'
+  delete 'users/:id' => 'users#admin_destroy'
 
   root :to => "main#index"
 

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :school, :except => [:new, :create]
-  load_and_authorize_resource :user, :through => :school, :except => [:new, :create]
+  load_and_authorize_resource :user, :only => [:admin_index, :admin_show, :admin_edit, :admin_update, :admin_destroy]
+  load_and_authorize_resource :school, :except => [:new, :create, :admin_index, :admin_show, :admin_edit, :admin_update, :admin_destroy]
+  load_and_authorize_resource :user, :through => :school, :except => [:new, :create, :admin_index, :admin_show, :admin_edit, :admin_update, :admin_destroy]	
 
   def index
     @school = School.find(params[:school_id])
@@ -92,5 +93,30 @@ class UsersController < ApplicationController
   def teachers
     @school = School.find(params[:school_id])
     @users = @school.users.where(:teacher => true)
+  end
+
+  def admin_index
+    query = "(director = 't' OR school_id IS NULL) AND (username LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR email LIKE ?)"
+    @users = User.where(query, "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    @users = @users.page().per(10)
+  end
+
+  def admin_update
+    @user = User.find(params[:id])
+    pass = @user.crypted_password
+
+    if @user.update_attributes(params[:user])
+      @user.crypted_password = pass
+      @user.save
+      redirect_to users_path, :notice  => "Successfully updated user."
+    else
+      render :action => 'admin_edit'
+    end
+  end
+
+  def admin_destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path, :notice => "Successfully destroyed user."
   end
 end

@@ -1,0 +1,120 @@
+<%
+username_data = Array.new
+first_name_data = Array.new
+last_name_data = Array.new
+email_data = Array.new
+(User.find(:all, :conditions => { :director => true })+User.find(:all, :conditions => { :school_id => nil })).each do |user|
+  username_data.push(user.username) if !username_data.include?(user.username)
+  first_name_data.push(user.first_name) if !first_name_data.include?(user.first_name)
+  last_name_data.push(user.last_name) if !last_name_data.include?(user.last_name)
+  email_data.push(user.email) if !email_data.include?(user.email)
+end
+%>
+
+<script>
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+    _renderMenu: function( ul, items ) {
+      var self = this,
+      currentCategory = "";
+      $.each( items, function( index, item ) {
+        if ( item.category != currentCategory ) {
+          ul.append( "<li class='ui-autocomplete-category'><b>" + item.category + "</b></li>" );
+          currentCategory = item.category;
+        }
+        self._renderItem( ul, item );
+      });
+    }
+  });
+
+  $(function() {
+    var data = [
+      <%
+ 	username_data.each {|u| %> { label: "<%= u %>", category: "Username" }, <% }
+        email_data.each {|em| %> { label: "<%= em %>", category: "Email" }, <% }
+        first_name_data.each {|fn| %> { label: "<%= fn %>", category: "First Name" }, <% }
+        last_name_data.each {|ln| %> { label: "<%= ln %>", category: "Last Name" }, <% }
+      %>
+      ];
+    $("#user_search_field").catcomplete({
+      delay: 0,
+      source: data
+    });
+  });
+
+  function loadMoreUsers(pageNo) {
+    var url = '/users/page/';
+    <% searchf = "?utf8=✓&q="+params[:q] if !params[:q].nil?%>
+    $.get(url + pageNo + '<%= searchf %>', function(response) {
+      $("#users_data").append(response);
+    });
+  }
+
+  $(document).ready(function() {
+    var currPage = 1;
+    $("button.users_next").click(function() {
+      loadMoreUsers(++currPage);
+    });
+  });  
+</script>
+
+<% if !show_title? %>
+  <% title "Usuarios" %>
+<% end %>
+<center>
+  <%= form_for users_path, :method => :get, :autocomplete => "off" do  %>
+    <%= text_field_tag :q, params[:q], :id => "user_search_field" %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</center>
+
+<table id="box-table-a">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Email</th>
+      <th>Paquete</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="users_data">
+    <% if @users.empty? %>
+      <tr>
+        <td colspan="6" align="center"><i>No existen usuarios</i></td>
+      </tr>
+    <% else %>
+      <% @users.each do |user|
+  abilities = Array.new
+  abilities.push("Prof") if user.teacher
+  abilities.push("Asist") if user.assistant
+%>
+<tr>
+  <td><%= link_to user.username, users_path(user) %></td>
+  <td><%= user.first_name %></td>
+  <td><%= user.last_name %></td>
+  <td><%= user.email %></td>
+  <td><%= link_to(user.package.name, user.package) if !user.package.nil? %></td>
+  <td coslpan="3">
+    <% if can? :update, user %>
+      <%= link_to image_tag("edit.png", :height => 20), edit_user_path(user) %>
+    <%end%>
+    <% if can? :destroy, user %>
+      <%= link_to image_tag("delete.png", :height => 20), user_path(user), :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  </td>
+</tr>
+    <% end 
+       end %>
+  </tbody>
+</table>
+
+<div id="users_next_link">
+  <% if !@users.last_page? %>
+    <br/>
+    <center>
+      <%= button_tag "Load more", :class => "users_next", :style => "width:300px;" %>
+    </center>
+  <% end %>
+</div>
+

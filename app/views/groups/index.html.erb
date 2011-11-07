@@ -2,7 +2,7 @@
 
 <table id="box-table-a">
   <thead>
-    <% if can? :create, Group %>
+    <% if can? :create, @school => Group %>
       <tr>
         <td colspan="10">
 	  <%= link_to image_tag("add.png", :height => 14), new_school_group_path(@school) %>
