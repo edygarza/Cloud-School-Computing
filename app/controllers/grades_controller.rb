@@ -24,8 +24,13 @@ class GradesController < ApplicationController
 	@grade.grade = params["grade_#{group_student.student_id}"]
         @grade.student_id = group_student.student_id
         @grade.activity_id = @activity
+        if(@grade.grade.nil? != true && @grade.grade < 0)
+          redirect_to school_group_activity_grades_path, :alert => "Los campos tienen que ser mayor o igual que cero"
+          return          
+        end
 	if !@grade.save
-          redirect_to school_group_activity_grades_path
+          redirect_to school_group_activity_grades_path, :alert => "Los campos tienen que ser númericos"
+          return
         end
     end
     redirect_to school_group_activity_grades_path, :notice => "Successfully created grade."

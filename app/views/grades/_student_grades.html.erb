@@ -1,26 +1,49 @@
-<table>
-  <tr>
-    <th>Actividad</th>
-    <th>Calificación</th>
-    <th>Valor</th>
-  </tr>
 <%
 @group_student = GroupStudent.find(params[:group_student_id])
+@student = Student.find(@group_student.student_id)
+%>
+<% title "Calificaciones del estudiante [#{@student.registration_number}] #{@student.first_name} #{@student.last_name}" %>
+<center>
+  <p><%= link_to "Volver a la lista de estudiantes", school_group_group_students_path %></p>
+</center>
+<table id="box-table-a">
+  <thead>
+    <tr>
+      <th>Actividad</th>
+      <th>Calificación</th>
+      <th>Valor</th>
+      <th>Acumulado</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
 @activities = Activity.where(:group_id => @group_student.group_id)
 total = 0
 @activities.each do |activity|
-  total = activity.value + total
-  @grade = Grade.where(:activity_id => activity.id, :student_id => @group_student.student_id).first
+  @grade = Grade.new
+  @grade = Grade.where(:activity_id => activity.id, :student_id => @group_student.student_id).first 
 %>
-  <tr>
-    <td><%= activity.title %></td>
-    <% if(!@grade.nil?) %>
-      <td><%= @grade.grade %></td>
-    <% else %>
-      <td>SC</td>
-    <% end %>
-    <td><%= activity.value %></td>
-  </tr>
+    <tr>
+      <td><%= activity.title %></td>
+      <% if(!@grade.grade.nil?) 
+         porcentaje_acumulado = @grade.grade * (activity.value/100.0)
+	 total = porcentaje_acumulado + total
+       %>
+         <td><%= @grade.grade %></td>
+      <% else 
+         porcentaje_acumulado = 0
+       %>
+         <td>SC</td>
+      <% end %>
+      <td><%= activity.value %></td>
+      <td><%= porcentaje_acumulado %> %</td>
+    </tr>
 <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td><%= total %> %</td>
+    </tr>
+  </tbody>
 </table>
-<p>Total: <%= total %></p>
