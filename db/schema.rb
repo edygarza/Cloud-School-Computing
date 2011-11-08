@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111103022116) do
+ActiveRecord::Schema.define(:version => 20111107185052) do
 
   create_table "activities", :force => true do |t|
     t.string   "group_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20111103022116) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.string   "classroom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "packages", :force => true do |t|
+    t.string   "name"
+    t.integer  "users_limit"
+    t.integer  "students_limit"
+    t.integer  "groups_limit"
+    t.integer  "subjects_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20111103022116) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.integer  "package_id"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

@@ -7,26 +7,49 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.director?
-      can :create, User
-      can :manage, User do |u|
+      package = user.package
+
+      users = 0
+      School.find(:all, :conditions => { :owner_id => user.id }).each do |school|
+        users = users + school.users.count
+      end
+      can [:create,:new], User if package.users_limit > users
+      can [:index,:read,:show,:edit,:update,:destroy], User do |u|
 	u == user || u.school.owner == user
       end
-      can :create, School
+
+      can [:create,:new], School
       can :manage, School do |s|
 	s.owner == user
       end
-      can :create, Student
-      can :manage, Student do |s|
+
+      students = 0
+      School.find(:all, :conditions => { :owner_id => user.id }).each do |school|
+        students = students + school.students.count
+      end
+      can [:create,:new], Student if package.students_limit > students
+      can [:index,:read,:show,:edit,:update,:destroy], Student do |s|
     	s.school.owner == user
       end
-      can :create, Subject
-      can :manage, Subject do |s| 
+
+      subjects = 0
+      School.find(:all, :conditions => { :owner_id => user.id }).each do |school|
+        subjects = subjects + school.subjects.count
+      end
+      can [:create,:new], Subject if package.subjects_limit > subjects
+      can [:index,:read,:show,:edit,:update,:destroy], Subject do |s| 
 	s.school.owner == user
       end
-      can :manage, Group do |g|
+
+      groups = 0
+      School.find(:all, :conditions => { :owner_id => user.id }).each do |school|
+        groups = groups + school.groups.count
+      end
+      can [:create,:new], Group if package.groups_limit > groups
+      can [:index,:read,:show,:edit,:update,:destroy], Group do |g|
 	g.school.owner == user
       end
-      can [:new,:create], Group
+   
       can :create, GroupStudent
       can :manage, GroupStudent do |gs|
         gs.group.school.owner == user

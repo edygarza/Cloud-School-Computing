@@ -6,7 +6,10 @@ $(document).ready(function() {
 <ul id="jmenu">
   <li><%= link_to "Index", root_url %></li>
   <% if current_user %>
-    <% if can? :read, School %>
+    <% if current_user.admin? %>
+      <li><%= link_to "Usuarios", users_path %></li>
+    <% end %>
+    <% if ((can? :read, School) || (can? :new, School)) && !current_user.admin? %>
       <li>
 	<%= link_to "Niveles", schools_path %>
 	<ul>
@@ -31,6 +34,9 @@ $(document).ready(function() {
 	  <% end %>
 	</ul>
       </li>
+    <% end %>
+    <% if can? :index, Package %>
+      <li><%= link_to "Paquetes", packages_path %></li>
     <% end %>
     <li><%= link_to "Log Out", logout_path %></li>
   <% else %>
