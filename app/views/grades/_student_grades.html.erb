@@ -20,8 +20,10 @@
 @activities = Activity.where(:group_id => @group_student.group_id)
 total = 0
 @activities.each do |activity|
-  @grade = Grade.new
   @grade = Grade.where(:activity_id => activity.id, :student_id => @group_student.student_id).first 
+  if(@grade.nil?)
+    @grade = Grade.new
+  end
 %>
     <tr>
       <td><%= activity.title %></td>
