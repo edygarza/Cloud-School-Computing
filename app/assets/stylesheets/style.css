@@ -143,13 +143,13 @@ a {
     color: #333399;
 }
 
-#span5 {
-  width:280px;
-  display: inline;
-  float: left;
-}
 
 #span6 {
   display: inline;
-  float: left;
+}
+
+#span5 {
+  width:280px;
+  display: inline;
+  
 }
