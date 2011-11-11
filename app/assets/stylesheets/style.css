@@ -142,3 +142,14 @@ a {
     background: none repeat scroll 0 0 #D0DAFD;
     color: #333399;
 }
+
+#span5 {
+  width:280px;
+  display: inline;
+  float: left;
+}
+
+#span6 {
+  display: inline;
+  float: left;
+}
