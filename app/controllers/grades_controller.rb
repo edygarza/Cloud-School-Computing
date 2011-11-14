@@ -29,7 +29,7 @@ class GradesController < ApplicationController
           return          
         end
 	if !@grade.save
-          redirect_to school_group_activity_grades_path, :alert => "Los campos tienen que ser númericos"
+          redirect_to school_group_activity_grades_path, :alert => "Los campos tienen que ser numericos"
           return
         end
     end
