@@ -9,7 +9,7 @@ $(document).ready(function() {
     <% if current_user.admin? %>
       <li><%= link_to "Usuarios", users_path %></li>
     <% end %>
-    <% if ((can? :read, School) || (can? :new, School)) && !current_user.admin? %>
+    <% if !current_user.package.nil? && ((can? :read, School) || (can? :new, School)) && !current_user.admin? %>
       <li>
 	<%= link_to "Niveles", schools_path %>
 	<ul>
@@ -35,7 +35,7 @@ $(document).ready(function() {
 	</ul>
       </li>
     <% end %>
-    <% if can? :index, Package %>
+    <% if current_user.admin? %>
       <li><%= link_to "Paquetes", packages_path %></li>
     <% end %>
     <li><%= link_to "Log Out", logout_path %></li>

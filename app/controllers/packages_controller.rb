@@ -16,7 +16,7 @@ class PackagesController < ApplicationController
   def create
     @package = Package.new(params[:package])
     if @package.save
-      redirect_to @package, :notice => "Successfully created package."
+      redirect_to packages_url, :notice => "Successfully created package."
     else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class PackagesController < ApplicationController
   def update
     @package = Package.find(params[:id])
     if @package.update_attributes(params[:package])
-      redirect_to @package, :notice  => "Successfully updated package."
+      redirect_to packages_url, :notice  => "Successfully updated package."
     else
       render :action => 'edit'
     end

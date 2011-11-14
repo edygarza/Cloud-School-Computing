@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :email, :password, :password_confirmation, :first_name, :last_name,
 		  :home_phone, :office_phone, :cell_phone, :address, :admin, :director, :assistant,
-		  :teacher, :school_id
+		  :teacher, :school_id, :package_id
  
   validates_uniqueness_of :username
   validates_presence_of :password, :on => :create
