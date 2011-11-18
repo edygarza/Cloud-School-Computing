@@ -1,5 +1,7 @@
 <% title "Actividades de ["+@group.subject.key+"] "+@group.subject.name+" ("+@group.classroom+")" %>
-
+<center>
+  <p><%= link_to "Volver a grupos", school_groups_path %></p>
+</center>
 <table id="box-table-a">
   <thead>
     <% if can? :create, @group => Activity %>
