@@ -6,17 +6,23 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'heroku'
-gem 'pg'
 gem 'populator'
 gem 'faker'
 gem 'kaminari'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'sorcery'
 gem 'json'
 gem 'therubyracer'
 gem 'nifty-generators', :group => :development
 gem 'cancan'
 gem 'carrierwave'
+
+group :production do
+  gem 'pg'
+end
+group :development, :test do
+  gem 'sqlite3'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

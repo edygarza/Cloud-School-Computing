@@ -84,6 +84,7 @@ GEM
     oauth2 (0.4.1)
       faraday (~> 0.6.1)
       multi_json (>= 0.0.5)
+    pg (0.11.0)
     polyglot (0.3.2)
     populator (1.0.0)
     rack (1.3.3)
@@ -160,6 +161,7 @@ DEPENDENCIES
   kaminari
   mocha
   nifty-generators
+  pg
   populator
   rails (= 3.1.0)
   sass-rails (~> 3.1.0)
