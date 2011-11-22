@@ -49,7 +49,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user].delete("password_confirmation"))
+    params[:user].delete("password_confirmation")
+    @user = User.new(params[:user])
     if !params[:school_id].nil?
       @school = School.find(params[:school_id])
       @user.school = @school
