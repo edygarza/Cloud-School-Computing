@@ -31,6 +31,7 @@ CloudSchoolComputing::Application.routes.draw do
   get 'users/:id' => 'users#admin_show', :as => 'user'
   put 'users/:id' => 'users#admin_update'
   delete 'users/:id' => 'users#admin_destroy'
+  post '/users' => 'users#create'
 
   root :to => "main#index"
 
