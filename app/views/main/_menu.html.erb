@@ -35,6 +35,48 @@ $(document).ready(function() {
 	</ul>
       </li>
     <% end %>
+    <% if current_user.assistant? %>
+      <li>
+        <%= link_to "Niveles", schools_path %>
+        <ul>
+          <% School.where(:id => current_user.school_id).each do |school| %>
+            <li>
+              <%= link_to school.name, school %>
+              <ul>
+                <% if can? :read, school => User %>
+                  <li><%= link_to "Usuarios", school_users_path(school) %></li>
+                <% end %>
+                <% if can? :read, school => Student %>
+                  <li><%= link_to "Estudiantes", school_students_path(school) %></li>
+                <% end %>
+                <% if can? :read, school => Subject %>
+                  <li><%= link_to "Materias", school_subjects_path(school) %></li>
+                <% end %>
+                <% if can? :read, school => Group %>
+                  <li><%= link_to "Grupos", school_groups_path(school) %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <% if current_user.teacher? %>
+      <li>
+        <a href="">Grupos</a>
+        <ul>
+        <% Group.where(:user_id => current_user.id).each do |group| %>
+	  <li>
+	    <%= link_to group.subject_id.to_s+"("+group.classroom+")", school_group_path(group.school,group) %>
+	    <ul>
+	      <%= link_to "Estudiantes", school_group_group_students_path(group.school,group) %>
+	      <%= link_to "Ponderaciones", school_group_activities_path(group.school,group) %>
+	    </ul>
+	  </li>
+     	<% end %>
+	</ul>
+      </li>
+    <% end %>
     <% if current_user.admin? %>
       <li><%= link_to "Paquetes", packages_path %></li>
     <% end %>

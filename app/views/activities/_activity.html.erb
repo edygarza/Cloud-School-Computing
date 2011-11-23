@@ -3,9 +3,7 @@
   <td align="center"><%= activity.value %></td>
   <td align="center"><%= number_to_percentage(activity.value*100.0/suma(@activities), :precision => 2) %></td>
   <td>
-    <% if can? :read, Activity %>
-      <%= link_to "Calificaciones", school_group_activity_grades_path(activity.group.school,activity.group,activity) %>
-    <% end %>
+    <%= link_to "Calificaciones", school_group_activity_grades_path(activity.group.school,activity.group,activity) %>
   </td>
   <td>
     <%= link_to image_tag("edit.png", :height => 20), edit_school_group_activity_path(@group.school,@group,activity) %>
