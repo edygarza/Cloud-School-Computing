@@ -25,9 +25,9 @@
     </div>
     <% if (!@school.nil? && @school.owner == current_user) || (current_user.nil? && current_user.admin?) %>
       Escoje un tipo de cuenta: <br />
-      <%= f.check_box :teacher, "Profesor" %>
+      <%= f.check_box :teacher %>
       <%= f.label :teacher, 'Profesor' %><br />
-      <%= f.check_box :assistant, "Asistente" %>
+      <%= f.check_box :assistant %>
       <%= f.label :assistant, 'Asistente' %><span></span><br />
     <% end %>
     <div class="field">

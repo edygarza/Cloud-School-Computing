@@ -14,7 +14,7 @@ class Ability
         users = users + school.users.count
       end
       can [:create,:new], User if package.users_limit > users
-      can [:index,:read,:show,:edit,:update,:destroy], User do |u|
+      can [:index,:read,:show,:edit,:update,:destroy,:more], User do |u|
 	u == user || u.school.owner == user
       end
 
